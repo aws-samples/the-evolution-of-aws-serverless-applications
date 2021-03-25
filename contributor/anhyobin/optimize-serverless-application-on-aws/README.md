@@ -4,17 +4,17 @@
 
 워크샵은 총 X 개의 모듈로 구성되어 있으며, 각각의 모듈은 모두 독립적으로 수행할 수 있습니다. 서버리스가 생소한 분도 이번 워크샵의 모듈을 모두 수행해보면 아무리 많은 CCU(Concurrent User, 동시접속자), DAU(Daily Active User, 일간 순수 이용자) 가 기대되는 서비스도 서버리스로 처리할 수 있다는 자신감을 얻으실 수 있을 것입니다.
 
-Be sure to:
+# 준비물
 
-* Change the title in this README
-* Edit your repository description on GitHub
+* 실습에 사용할 랩탑 혹은 데스크톱
+* AWS 계정 혹은 AWS 행사에 참여 중이라면 EventEngine 계정
 
-## Security
+# 모듈
 
-See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
+1. 나의 첫 AWS Lambda
+2. 단순한 REST API 기반 서버리스 애플리케이션 개발하기
+3. TBU
 
-## License Summary
+# 참고 자료
 
-The documentation is made available under the Creative Commons Attribution-ShareAlike 4.0 International License. See the LICENSE file.
-
-The sample code within this documentation is made available under the MIT-0 license. See the LICENSE-SAMPLECODE file.
+* 서버리스 웹 애플리케이션 워크샵 'https://github.com/aws-samples/aws-serverless-workshops-kr/tree/master/WebApplication'
