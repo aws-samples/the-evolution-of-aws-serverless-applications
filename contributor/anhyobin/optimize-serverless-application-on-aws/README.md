@@ -11,7 +11,7 @@
 
 ## 모듈
 
-1. 나의 첫 AWS Lambda
+1. [나의 첫 AWS Lambda](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/README.md)
 2. 단순한 REST API 기반 서버리스 애플리케이션 개발하기
 3. TBU
 
