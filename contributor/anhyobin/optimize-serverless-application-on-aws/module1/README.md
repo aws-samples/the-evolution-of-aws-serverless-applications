@@ -5,7 +5,7 @@
 Module 1 에서는 아래 아키텍처와 같이 Amazon S3 에 파일이 업로드 되는 '이벤트'가 발생하면 Amazon SNS 를 통해 사용자에게 email 로 알람을 전송하는 간단한 자동화 프로세스를 AWS Lambda 를 통해 구축해보겠습니다.  
   
 <div align="center">
-    <img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/img/lambda-icon.png"></img> 
+    <img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/img/module1_architecture.jpg"></img> 
 </div>  
   
 ## 1. Amazon SNS 구성
