@@ -8,4 +8,4 @@ Module 1 에서는 아래 아키텍처와 같이 Amazon S3 에 파일이 업로�
     <img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/img/lambda-icon.png"></img> 
 </div>  
   
-## Step 1. Amazon SNS 
+## 1. Amazon SNS 구성
