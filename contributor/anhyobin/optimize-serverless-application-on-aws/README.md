@@ -11,8 +11,8 @@
 
 ## 모듈
 
-1. [나의 첫 AWS Lambda](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/README.md)
-2. 단순한 REST API 기반 서버리스 애플리케이션 개발하기
+1. [나의 첫 AWS Lambda](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/README.md) : AWS Lambda 를 사용해본 적 없는 분들을 위한 기초 과정입니다. 이미 Lambda 에 익숙하다면 진행하지 않아도 괜찮습니다. 다음 아키텍처와 같이 Lambda 를 활용해 단순한 자동화 프로세스를 구축해봅니다. <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/img/module1_architecture.jpg"></img></div> 
+2. [REST API 기반 서버리스 애플리케이션 개발하기]()
 3. TBU
 
 ## 참고 자료
