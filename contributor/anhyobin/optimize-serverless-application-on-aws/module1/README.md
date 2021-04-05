@@ -31,4 +31,4 @@ Module 1 에서는 아래 아키텍처와 같이 Amazon S3 에 파일이 업로�
 
 이제 AWS Lambda 를 구성하여 앞서 생성한 S3 Bucket 과 SNS Topic 을 통해 파일이 업로드 되면 email 로 알람을 받는 간단한 자동화 구성을 해보겠습니다. Lambda 함수는 AWS 콘솔, IDE Toolkit, AWS CLI 또는 AWS SDK 등 다양한 방법으로 작성할 수 있습니다. 오늘 실습에서는 AWS 콘솔을 활용하지만 [IDE Toolkit 이나 AWS Cloud9 을 통한 개발](https://aws.amazon.com/ko/blogs/korea/how-to-use-aws-services-from-you-desktop-easily/) 방법도 살펴보시기 바랍니다.
 
-1. [AWS 
+1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS Lambda 서비스로 이동합니다.
