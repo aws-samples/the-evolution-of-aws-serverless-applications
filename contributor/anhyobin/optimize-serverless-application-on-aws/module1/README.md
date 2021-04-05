@@ -18,5 +18,7 @@ Module 1 에서는 아래 아키텍처와 같이 Amazon S3 에 파일이 업로�
 2. 메인 화면의 [Create topic] 하단의 [Topic name] 에 **s3-event** 를 입력하고 [Next step] 을 클릭합니다.  <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/img/1.png"></img></div>
 3. 별도의 내용 변경 없이 [Create topic] 버튼을 클릭하여 SNS Topic 생성을 완료합니다.
 4. 생성된 Topic 하단의 [Subcriptions] 탭에서 [Create subscription] 을 선택합니다.
-5. [Protocol] 에는 **Email** 을 선택하면 Endpoint 메뉴가 나타납니다. [Endpoint] 에는 email 알람을 받을 **email 주소** 를 입력합니다. [Create subscription] 버튼을 클릭하여 구독을 완료합니다.  <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/img/3.png"></img></div>  
-6. dd
+5. [Protocol] 에 **Email** 을 선택하면 Endpoint 메뉴가 나타납니다. [Endpoint] 에는 email 알람을 받을 **email 주소** 를 입력합니다. [Create subscription] 버튼을 클릭하여 구독을 완료합니다.  <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/img/3.png"></img></div>
+6. 잠시 후 입력한 email 주소로 Subscription Confirmation 메일이 수신됩니다. 메일의 [Confirm subscription] 을 클릭하여 구독을 완료합니다.
+
+### Step 2. Amazon S3 
