@@ -38,3 +38,12 @@ Module 1 에서는 아래 아키텍처와 같이 Amazon S3 에 파일이 업로�
 5. [Change default execution role] 메뉴를 확장한 뒤 [Create a new role from AWS policy templates] 를 선택합니다.
 6. [Role name] 에는 **lambda-sns-pub** 을 입력하고, 아래 [Policy templates - optional] 에는 **Amazon SNS publish policy** 를 선택합니다. <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/img/6.png"></img></div>
 7. 하단의 [Create function] 버튼을 클릭하여 Lambda 함수 생성을 완료합니다.
+8. 코드를 수정하기 전에 잠시 생성된 코드를 살펴보겠습니다. 아래 [Code] 탭의 **s3-email** 폴더 아래의 **lambda_function.py** 를 보면 아래와 같이 단순한 Python 코드가 생성된 것을 확인할 수 있습니다.
+~~~import json
+
+def lambda_handler(event, context):
+    # TODO implement
+    return {
+        'statusCode': 200,
+        'body': json.dumps('Hello from Lambda!')
+    }~~~
