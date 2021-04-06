@@ -32,3 +32,9 @@ Module 1 에서는 아래 아키텍처와 같이 Amazon S3 에 파일이 업로�
 이제 AWS Lambda 를 구성하여 앞서 생성한 S3 Bucket 과 SNS Topic 을 통해 파일이 업로드 되면 email 로 알람을 받는 간단한 자동화 구성을 해보겠습니다. Lambda 함수는 AWS 콘솔, IDE Toolkit, AWS CLI 또는 AWS SDK 등 다양한 방법으로 작성할 수 있습니다. 오늘 실습에서는 AWS 콘솔을 활용하지만 [IDE Toolkit 이나 AWS Cloud9 을 통한 개발](https://aws.amazon.com/ko/blogs/korea/how-to-use-aws-services-from-you-desktop-easily/) 방법도 살펴보시기 바랍니다.
 
 1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS Lambda 서비스로 이동합니다.
+2. 화면 상단의 [Create Function] 버튼을 클릭합니다.
+3. Lambda 함수를 생성할 수 있는 다양한 옵션이 제공되는 것을 확인할 수 있습니다. 이번 실습은 [Author from scratch] 옵션을 통해 처음부터 함수를 생성합니다.
+4. [Function name] 에는 **s3-email** 을 입력하고, [Runtime] 은 **Python 3.8** 을 선택합니다. 그 외에도 다양한 프로그래밍 언어를 지원하는 것을 확인할 수 있습니다.
+5. [Change default execution role] 메뉴를 확장한 뒤 [Create a new role from AWS policy templates] 를 선택합니다.
+6. [Role name] 에는 **lambda-sns-pub** 을 입력하고, 아래 [Policy templates - optional] 에는 **Amazon SNS publish policy** 를 선택합니다. <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/img/6.png"></img></div>
+7. 하단의 [Create function] 버튼을 클릭하여 Lambda 함수 생성을 완료합니다.
