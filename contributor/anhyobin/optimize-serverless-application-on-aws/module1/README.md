@@ -53,5 +53,22 @@ def lambda_handler(event, context):
   
 이번 실습에 사용되는 함수는 Amazon S3 에 파일이 업로드 되는 이벤트가 발생하면 Amazon SNS 를 통해 사용자에게 이메일을 발송합니다. 이러한 로직은 lambda_handler() 메소드 내부에 구현해주면 됩니다. Lambda 함수의 가장 기본이 되는 구조입니다.
   
-9. ㅇㅇㅇ
-10. 
+9. 해당 코드를 모두 삭제한 뒤 아래의 코드를 붙여 넣습니다.
+```Python
+import json
+import boto3
+
+sns = boto3.client('sns')
+
+def lambda_handler(event, context):
+    response = sns.publish(
+        TopicArn = '생성한 SNS Topic 의 ARN',
+        Message = event['Records'][0]['s3']['object']['key'] + ' has been ' + event['Records'][0]['eventName'],
+        Subject = 'S3 Event',
+        )
+    # TODO implement
+    return {
+        'statusCode': 200,
+        'body': json.dumps('Hello from Lambda!')
+    }
+```
