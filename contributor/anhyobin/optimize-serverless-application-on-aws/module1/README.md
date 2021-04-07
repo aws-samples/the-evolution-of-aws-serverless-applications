@@ -73,7 +73,7 @@ def lambda_handler(event, context):
     }
 ```
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/img/8.png"></img></div>
-10. [Deploy] 버튼을 클릭하여 작성한 코드를 저장합니다. 가장 간단하게 AWS 콘솔에서 Lambda 함수를 작성하는 법을 살펴 봤습니다.
+10. [Deploy] 버튼을 클릭하여 작성한 코드를 저장합니다. 가장 간단하게 AWS 콘솔에서 Lambda 함수를 작성하는 법을 살펴 봤습니다. 
 11. 마지막으로 작성한 Lambda 함수를 호출 할 이벤트를 구성합니다. 상단의 [+ Add trigger] 버튼을 클릭합니다.
 12. [Select a trigger] 메뉴에는 **S3** 를 선택합니다. [Bucket] 은 Step 2. Amazon S3 에서 구성한 S3 Bucket 을 선택합니다. 하단의 Recursive invocation 옵션을 체크한 뒤 [Add] 버튼을 클릭하여 트리거 설정을 완료합니다. <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/img/10.png"></img></div>
 
