@@ -86,3 +86,7 @@ def lambda_handler(event, context):
 2. 앞서 생성했던 Bucket 으로 이동합니다.
 3. 아무 파일이나 드래그&드랍 하여 업로드 해줍니다.
 4. 잠시 후 지정한 email 주소로 다음과 같은 이메일이 온 것을 확인합니다. <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/img/9.png"></img></div>
+
+
+고생하셨습니다. AWS Lambda 의 기본을 경험해보셨습니다.
+[Module 2. REST API 기반 서버리스 애플리케이션 개발하기]() 를 이어서 진행하겠습니다.
