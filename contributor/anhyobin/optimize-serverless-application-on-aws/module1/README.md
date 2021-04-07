@@ -53,7 +53,7 @@ def lambda_handler(event, context):
   
 이번 실습에 사용되는 함수는 Amazon S3 에 파일이 업로드 되는 이벤트가 발생하면 Amazon SNS 를 통해 사용자에게 이메일을 발송합니다. 이러한 로직은 lambda_handler() 메소드 내부에 구현해주면 됩니다. Lambda 함수의 가장 기본이 되는 구조입니다.
   
-9. 해당 코드를 모두 삭제한 뒤 아래의 코드를 붙여 넣습니다.
+9. 해당 코드를 모두 삭제한 뒤 아래의 코드를 붙여 넣습니다. 코드의 TopicArn 은 Step 1. Amazon SNS 에서 구성한 Topic 을 참조합니다. <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/img/7.png"></img></div>
 ```Python
 import json
 import boto3
@@ -72,3 +72,4 @@ def lambda_handler(event, context):
         'body': json.dumps('Hello from Lambda!')
     }
 ```
+10. 
