@@ -72,4 +72,15 @@ def lambda_handler(event, context):
         'body': json.dumps('Hello from Lambda!')
     }
 ```
-10. 
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/img/8.png"></img></div>
+10. [Deploy] 버튼을 클릭하여 작성한 코드를 저장합니다. 가장 간단하게 AWS 콘솔에서 Lambda 함수를 작성하는 법을 살펴 봤습니다.
+11. 마지막으로 작성한 Lambda 함수를 호출 할 이벤트를 구성합니다. 상단의 [+ Add trigger] 버튼을 클릭합니다.
+12. [Select a trigger] 메뉴에는 **S3** 를 선택합니다. [Bucket] 은 Step 2. Amazon S3 에서 구성한 S3 Bucket 을 선택합니다. 하단의 Recursive invocation 옵션을 체크한 뒤 [Add] 버튼을 클릭하여 트리거 설정을 완료합니다. <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/img/8.png"></img></div>
+
+### Step 4. 테스트
+
+모든 작업을 완료했습니다. 이제는 작성한 AWS Lambda 함수가 구성한 이벤트에 맞게 동작하는지 테스트를 해보겠습니다.
+
+1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 Amazon S3 서비스로 이동합니다.
+2. 앞서 생성했던 Bucket 으로 이동합니다.
+3. 아무 파일이나 드래그&드랍 하여 업로드 해줍니다.
