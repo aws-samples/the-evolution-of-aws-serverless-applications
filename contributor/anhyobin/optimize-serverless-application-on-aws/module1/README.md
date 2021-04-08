@@ -89,4 +89,4 @@ def lambda_handler(event, context):
 
 
 고생하셨습니다. AWS Lambda 의 기본을 경험해보셨습니다.
-[Module 2. REST API 기반 서버리스 애플리케이션 개발하기]() 를 이어서 진행하겠습니다.
+[Module 2. REST API 기반 서버리스 애플리케이션 개발하기](https://github.com/aws-samples/aws-games-sa-kr/tree/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/README.md) 를 이어서 진행하겠습니다.
