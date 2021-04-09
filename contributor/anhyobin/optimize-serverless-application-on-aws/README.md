@@ -12,7 +12,7 @@
 ## 모듈
 
 1. [나의 첫 AWS Lambda](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/README.md) : AWS Lambda 를 사용해본 적 없는 분들을 위한 기초 과정입니다. 이미 Lambda 에 익숙하다면 진행하지 않아도 괜찮습니다. 다음 아키텍처와 같이 Lambda 를 활용해 단순한 자동화 프로세스를 구축해봅니다. <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/img/module1_architecture.jpg"></img></div> 
-2. [REST API 기반 서버리스 애플리케이션 개발하기](https://github.com/aws-samples/aws-games-sa-kr/tree/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/README.md) : 본격적으로 AWS Lambda 를 활용해 서버리스 애플리케이션을 만들어 봅니다. 가장 많이 활용되는 형태인 Amazon API Gateway 의 REST API 구축에 AWS Lambda 를 활용하는 방법을 알아봅니다. <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/img/module2_architecture.jpg"></img></div> 
+2. [REST API 기반 서버리스 애플리케이션 개발하기](https://github.com/aws-samples/aws-games-sa-kr/tree/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/README.md) : 본격적으로 AWS Lambda 를 활용해 서버리스 애플리케이션을 만들어 봅니다. 가장 많이 활용되는 형태인 Amazon API Gateway 의 REST API 구축에 AWS Lambda 를 활용하는 방법을 알아봅니다. <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/module2_architecture.jpg"></img></div> 
 3. TBU
 
 ## 참고 자료
