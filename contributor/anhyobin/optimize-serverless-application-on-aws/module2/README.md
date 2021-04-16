@@ -42,7 +42,7 @@ RDS는 Lambda의 Subnet에서만 통신이 될 수 있도록 설정해줍니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/create_rds.png"></img></div>
 
-5. 다음으로 설정에서는 DB 인스턴스 식별자에서는 `serverless-workshop-rds`를 적습니다. 자격 증명 설정에서는 마스터 사용자 이름은 **admin**, 마스터 암호는 **your password**를 적습니다.
+5. 다음으로 설정에서는 DB 인스턴스 식별자에서는 `serverless-workshop-rds`를 적습니다. 자격 증명 설정에서는 마스터 사용자 이름은 **admin** , 마스터 암호는 **your password** 를 적습니다.
 
 6. DB 인스턴스 크기는 적당한 타입을 선택하도록 합니다. 여기서는 m5.large를 선택합니다. (프리티어나 T클래스 인스턴스를 선택하셔도 실습을 진행하실 수 있습니다)
 
