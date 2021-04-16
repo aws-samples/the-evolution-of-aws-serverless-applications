@@ -2,7 +2,7 @@
 
 이 모듈에서는 Module 2.에서 생성한 API Gateway, Lambda, RDS를 기반으로 AWS Secrets Manager와 RDS Proxy 설정을 추가하는 과정입니다. 이 모듈을 추가함으로서 Lambda 기반 API application 서비스의 장점은 AWS Secrets Manager를 통하여 RDS의 보안 정보를 쉽게 관리할 수 있고, RDS Proxy를 설정함으로서 Connection pooling로 보다 효율적인 connection 관리로 API 의 성능을 향상 시킬 수 있습니다.
 
-Step 1. AWS Secrets Manager 새 보안 암호 저장, VPC endpoint 생성
+### Step 1. AWS Secrets Manager 새 보안 암호 저장, VPC endpoint 생성
 
 1. 콘솔의 서비스 검색창에서 **Secrets Manger** 를 검색하고, AWS Secrets Manager 콘솔 창에서 **새 보안 암호 저장** 버튼을 클릭합니다.
 
@@ -35,7 +35,7 @@ Subnet 생성에 대하여 궁금하시다면 [VPC 및 서브넷 관련 작업](
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/create_endpoint_2.png"></img></div>
 
-Step 2. RDS Proxy 설정
+### Step 2. RDS Proxy 설정
 
 1. RDS Proxy를 생성하기 위해서 AWS 콘솔의 서비스 검색창에서 RDS를 검색하여 RDS 콘솔 화면으로 진입합니다. 그리고 Module 2. 에서 생성한 `serverless-workshop-rds` 식별자의 RDS 화면으로 진입합니다.
 
@@ -57,10 +57,20 @@ Step 2. RDS Proxy 설정
 
 5. 나머지 설정은 그대로 두고 **생성** 버튼을 클릭하여 생성을 마칩니다. 생성에는 몇 분의 시간이 걸릴 수 있습니다. 다음과 같이 프록시 화면이 보이면, **Proxy Endpoint** 를 확인하실 수 있습니다. 이 **Proxy Endpoint** 를 메모해 두도록합니다.
 
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/created_proxy.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/created_proxy.png"></img></div>
 
-Step 3. Lambda 코드 변경
+### Step 3. Lambda 코드 변경
 
-1. 람다 콘솔 들어감 람다 코드를 교체함
-2. 람다코드에서 수정해야할 부분 수정, 업데이트
-3. api gateway주소를 다시 호출해봄 제대로 동작하면 완료
+1. Module 2.에서 생성한 Lambda의 코드를 Secrets Manager와 Proxy에 접근할 수 있도록 수정해야 합니다. 따라서 AWS 콘솔에서 Lambda 를 검색하여 `serverless-workshop-lambda` 함수의 화면으로 진입합니다.
+   
+2. 그리고 Lambda의 코드를 [Lambda Module 3 샘플코드](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/src/module3_lambda.py)로 대체합니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/fix_lambda.png"></img></div>
+
+3. 그리고 *16줄*에서 `host=#'your rds proxy'` 를 Step 2. 에서 생성한 RDS Proxy의 Endpoint로 대체하고, **Deploy** 버튼을 클릭하여 배포를 완료합니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/fix_lambda_2.png"></img></div>
+
+4. Module 2. 에서 생성했던 **API Gateway 콘솔 화면의 스테이지**로 진입하여 생성되어있는 URL을 브라우저 혹은 터미널에서 호출하여 {"statusCode": 200, "body": "your RDS time"}이 제대로 나오는 것을 확인합니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/create_api_gateway_8.png"></img></div>

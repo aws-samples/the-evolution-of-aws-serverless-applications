@@ -78,7 +78,7 @@ RDS는 Lambda의 Subnet에서만 통신이 될 수 있도록 설정해줍니다.
 
 4. Lambda 생성이 완료되면, 함수 탭의 함수 리스트에서 생성한 Lambda를 확인하실 수 있습니다. 생성한 Lambda를 클릭하여 세부 설정으로 진입합니다.
 
-5. 코드 탭에서 Default로 코드가 작성되어있는 것을 확인하실 수 있습니다. 이 것을 [Lambda 샘플코드](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/src/module2_lambda.py)의 코드를 복사하여 대체하도록 합니다.
+5. 코드 탭에서 Default로 코드가 작성되어있는 것을 확인하실 수 있습니다. 이 것을 [Lambda Module 2 샘플코드](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/src/module2_lambda.py)의 코드를 복사하여 대체하도록 합니다.
 
 6. 코드의 5:9줄에서 pymysql.connect() 코드를 확인하실 수 있고 host, user, password를 입력해야 합니다. host는 생성하신 RDS의 endpoint, user와 password는 Step 2.에서 설정한 마스터 유저와 암호 값을 입력합니다. 입력이 완료되면 **Deploy** 버튼을 클릭하여 배포를 마칩니다. 여기에서는 비밀번호를 입력하는 방법으로 실습이 진행됩니다. 비밀번호를 노출하지 않고 IAM 인증으로 비밀번호 대신 토큰으로 접근하는 방법도 있습니다. 보다 자세한 내용은 [Lambda configuration-database](https://docs.aws.amazon.com/lambda/latest/dg/configuration-database.html)에서 확인하실 수 있습니다.
 
@@ -131,3 +131,7 @@ Lambda를 REST API로 호출하기 위해 [Amazon API Gateway](https://aws.amazo
 7. Amazon API Gateway 설정이 끝났습니다. **test-api 스테이지 편집기** 화면의 상단에 **URL 호출**에서 호출가능한 URL이 생성된 것을 확인하실 수 있습니다. 이 URL을 브라우저 혹은 터미널에서 호출하여 {"statusCode": 200, "body": "your RDS time"}이 제대로 나오는 것을 확인합니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/create_api_gateway_8.png"></img></div>
+
+8. 또한 Lambda 화면에서도 다음과 같이 API Gateway가 트리거에 추가된 것을 확인하실 수 있습니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/lambda_trigger.png"></img></div>
