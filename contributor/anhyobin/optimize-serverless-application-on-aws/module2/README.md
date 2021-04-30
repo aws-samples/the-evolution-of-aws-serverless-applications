@@ -21,7 +21,7 @@ Subnet 생성에 대하여 궁금하시다면 [VPC 및 서브넷 관련 작업](
 또한 VPC와 Subnet 설정에 관련하여 좀 더 자세히 알고싶으시다면 [VPC 및 콘솔](https://docs.aws.amazon.com/ko_kr/vpc/latest/userguide/VPC_Subnets.html) 을 참고할 수 있습니다.
 
 2. Security Group도 마찬가지로 Lambda, RDS용도로 각각 2개를 생성해 줍니다.
-RDS는 Lambda의 Subnet에서만 통신이 될 수 있도록 설정해줍니다. 인바운드 규칙은 DB전용 Security Group은 Lambda Security Group만 3306 포트를 허용하고, Lambda 전용 Security Group은 인바운드 규칙에 아무것도 추가하실 필요가 없습니다. DB, Lambda Security Group 모두 아웃바운드 규칙은 Default 상태로 놔둡니다.
+RDS는 Lambda의 Subnet에서만 통신이 될 수 있도록 설정해줍니다. 인바운드 규칙은 DB전용 Security Group은 Lambda Security Group와 Database Security Group의 3306 포트를 허용하고, Lambda 전용 Security Group은 인바운드 규칙에 아무것도 추가하실 필요가 없습니다. DB, Lambda Security Group 모두 아웃바운드 규칙은 Default 상태로 놔둡니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/lambda_sg.png"></img></div>
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/db_sg.png"></img></div>
@@ -36,7 +36,7 @@ RDS는 Lambda의 Subnet에서만 통신이 될 수 있도록 설정해줍니다.
 
 2. 그리고 **데이터베이스 생성** 버튼을 클릭하여 생성 화면으로 넘어갑니다. 본 실습에서는 MySQL을 생성합니다. 하지만 이는 필수는 아닙니다. 익숙한 DB를 선택하여 구성하실 수 있습니다.
 
-3. 엔진 옵션에서 MySQL을 선택하고 에디션, 버전은 이미 선택되어있는 default로 선택하거나, 원하는 버전을 선택하실 수 있습니다.
+3. 엔진 옵션에서 MySQL을 선택하고 버전은 **5.6, 5.7** 버전을 선택하도록 합니다. **현재기준(2021.5) RDS Proxy는 **MySQL 5.6, 5.7 버전**을 지원하고 있습니다. [여기](https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/UserGuide/rds-proxy.html)에서 **RDS Proxy 제한사항** 항목에서 자세한 내용을 확인하실 수 있습니다. 
 
 4. 템플릿 부분는 **개발/테스트**를 선택합니다. 하지만 필요에 따라 프로덕션, 혹은 프리 티어를 선택하셔도 됩니다. **개발/테스트**를 선택하시면 **다중 AZ 배포** 기능이 비활성화 됩니다.
 
@@ -86,7 +86,7 @@ RDS는 Lambda의 Subnet에서만 통신이 될 수 있도록 설정해줍니다.
 
 7. 이 상태만으로는 Lambda를 실행할 수 없습니다. RDS를 접근하기 위해서 pymysql 모듈이 설치가 되어야 합니다. pymysql 모듈을 사용할 수 있도록 본 실습에서는 **Lambda 계층**을 사용하여 설정합니다. **Lambda 계층**에 대하여 자세히 알기 위해서는 [Lambda 계층](https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/configuration-layers.html)에서 확인하실 수 있습니다. 
 
-8. 왼쪽의 탭에서 **추가 리소스의 계층** 항목을 클릭합니다. 그리고 오른쪽 상단의 **계층 생성**을 클릭합니다. 이름에는 **pymysql**을 입력하고 pymysql을 업로드 해야합니다. [pymysql](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/src/pymysql.zip)를 다운 받거나, [pypi.org](https://pypi.org/project/PyMySQL/#files)에서 tar.gz으로 압축된 파일을 zip으로 새로 압축하여 업로드 하셔도 됩니다. 그리고 생성 버튼을 클릭하여 마칩니다.
+8. 왼쪽의 탭에서 **추가 리소스의 계층** 항목을 클릭합니다. 그리고 오른쪽 상단의 **계층 생성**을 클릭합니다. 이름에는 **pymysql**을 입력하고 pymysql을 업로드 해야합니다. [pymysql](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/src/pymysql.zip)를 다운 받거나, [pypi.org](https://pypi.org/project/PyMySQL/#files)에서 tar.gz으로 압축된 파일을 zip으로 새로 압축하여 업로드 하셔도 됩니다. 그리고 생성 버튼을 클릭하여 마칩니다. **이 실습은 python 3.8로 작성된 Lambda 함수의 코드로 진행됩니다. pymysql을 pypi에서 다운로드 받을때 꼭 함수에서 사용되고 있는 python버전과 호환이 가능한지 확인이 필요합니다**
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/lambda_layer.png"></img></div>
 
@@ -95,10 +95,14 @@ RDS는 Lambda의 Subnet에서만 통신이 될 수 있도록 설정해줍니다.
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/add_lambda_layer.png"></img></div>
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/add_lambda_layer_2.png"></img></div>
 
-10. 이로서 Lambda 생성을 마치고 테스트를 해봅니다. Lambda의 코드 탭에서 **Test** 버튼을 클릭합니다. 테스트 결과에 아래와 같이 statusCode : 200, 그리고 body에 RDS의 시간이 나오면 정상적으로 RDS와 Lambda가 통신이 가능한 것을 확인하실 수 있습니다.
+10. 이로서 Lambda 생성을 마치고 테스트를 해봅니다. Lambda의 코드 탭에서 **Test** 버튼을 클릭합니다. 테스트를 클릭하면 다음과 같이 테스트 이벤트 구성화면이 보입니다. 여기서 이벤트 이름에 `workshoptest`를 입력하고 생성을 마칩니다.
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/create_test_event.png"></img></div>
 
+11. 화면 아래와 같이 테스트 버튼을 클릭하고, 테스트 결과에 아래와 같이 statusCode : 200, 그리고 body에 RDS의 시간이 나오면 정상적으로 RDS와 Lambda가 통신이 가능한 것을 확인하실 수 있습니다.
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/lambda_code_test.png"></img></div>
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/lambda_code_test_result.png"></img></div>
+
+**만약 테스트가 실패하면, 혹시 pymysql.connect 부분에서 `,`, `''` 등 syntax 에러가 없는지 확인이 필요합니다. 모든 문자는 `''`로 감싸져야합니다. 또한 host, user 라인의 끝에는 `,`가 있어야 합니다.**
 
 ### Step 4. Amazon API Gateway 생성
 
@@ -123,7 +127,7 @@ Lambda를 REST API로 호출하기 위해 [Amazon API Gateway](https://aws.amazo
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/create_api_gateway_5.png"></img></div>
 
-6. 그리고 다시 **리소스탭에서 작업** 드롭다운 버튼을 클릭하여 **API 배포**를 클릭합니다. API 배포 창에서 배포 스테이지는 **[새 스테이지]**를 선택하고 스테이지 이름은 `test-api`를 입력하고 **배포**를 클릭합니다.
+6. 그리고 다시 **리소스탭에서 작업** 드롭다운 버튼을 클릭하여 **API 배포**를 클릭합니다. API 배포 창에서 배포 스테이지는 ** [새 스테이지] **를 선택하고 스테이지 이름은 `test-api`를 입력하고 **배포**를 클릭합니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/create_api_gateway_6.png"></img></div>
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/create_api_gateway_7.png"></img></div>
@@ -135,3 +139,8 @@ Lambda를 REST API로 호출하기 위해 [Amazon API Gateway](https://aws.amazo
 8. 또한 Lambda 화면에서도 다음과 같이 API Gateway가 트리거에 추가된 것을 확인하실 수 있습니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/lambda_trigger.png"></img></div>
+
+
+
+실습에서 Mysql 5.7 인스턴스로 변경하고 Proxy 생성부터 다시 진행
+Module 2도 제대로 되었는지 확인

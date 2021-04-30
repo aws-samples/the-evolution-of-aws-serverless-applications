@@ -14,7 +14,6 @@
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/create_sm_2.png"></img></div>
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/create_sm_3.png"></img></div>
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/created_sm.png"></img></div>
 
 4. AWS Secrets Manager를 **VPC 내부로 연결된 Lambda** 에 사용하기 위해서는 Secrets Manager의 VPC endpoint를 생성해야 합니다. 그리고 VPC endpoint를 생성할 Subnet을 생성해야 합니다. 따라서 먼저 **VPC 콘솔 화면** 에서 왼쪽 패널의 서브넷을 클릭하고, 아래의 사진과 같이 Subnet을 생성합니다. 본 실습에서는 서울리전에서 진행되고, 서울리전의 4개의 AZ(Availiablity Zone)에 모두 생성하였습니다. Subnet을 생성할때는 VPC에 할당된 CIDR 블록을 토대로 IP주소 범위를 설정해줍니다.
 
@@ -31,9 +30,10 @@ Subnet 생성에 대하여 궁금하시다면 [VPC 및 서브넷 관련 작업](
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/create_endpoint.png"></img></div>
 
-7. VPC는 Lambda와 RDS를 구성한 VPC를 선택하고, Subnet은 아래의 사진과 같이 3.에서 생성한 Subnet을 선택하시면 됩니다. 보안 그룹은 4. 에서 생성한 보안 그룹을 선택하고, 나머지 설정은 그대로 놔두고 가장 하단의 **엔드포인트 생성** 파란색 버튼을 클릭하여 생성을 마칩니다.
+7. VPC는 Lambda와 RDS를 구성한 VPC를 선택하고, Subnet은 아래의 사진과 같이 3.에서 생성한 Subnet을 선택하시면 됩니다. 보안 그룹은 4. 에서 생성한 보안 그룹을 선택하고, 나머지 설정은 그대로 놔두고 가장 하단의 **엔드포인트 생성** 파란색 버튼을 클릭하여 생성을 마칩니다. 생성 과정을 마치면 **대기 중** 상태로 endpoint가 생성이 되고 있는 것을 확인하실 수 있습니다. 약 2~3분 정도 기다리시면 **사용 가능** 상태로 전환됩니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/create_endpoint_2.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/created_endpoint.png"></img></div>
 
 ### Step 2. RDS Proxy 설정
 
@@ -50,7 +50,7 @@ Subnet 생성에 대하여 궁금하시다면 [VPC 및 서브넷 관련 작업](
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/create_proxy_4.png"></img></div>
 
-4. 연결에서는 이미 생성한 Secrets Manager 암호인 `serverless-workshop-rds-secret` 을 선택하고 IAM 역할에서 **IAM 역할 생성**, 그리고 Subnet은 아래의 사진과 같이 Module 2.에서 생성한 DB 전용 Subnet을 선택해줍니다. VPC도 마찬가지로 RDS, Lambda를 생성한 VPC를 선택합니다.
+4. 연결에서는 이미 생성한 Secrets Manager 암호인 `serverless-workshop-rds-secret` 을 선택하고 IAM 역할에서 **IAM 역할 생성**, 그리고 Subnet은 아래의 사진과 같이 Module 2.에서 생성한 DB 전용 Subnet을 선택해줍니다. **추가 연결 구성**을 클릭하여 VPC도 마찬가지로 RDS, Lambda를 생성한 VPC를 선택합니다. 마지막으로 보안 그룹은 **database-sg**를 선택합니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/create_proxy_5.png"></img></div>
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/create_proxy_6.png"></img></div>
@@ -61,16 +61,26 @@ Subnet 생성에 대하여 궁금하시다면 [VPC 및 서브넷 관련 작업](
 
 ### Step 3. Lambda 코드 변경
 
-1. Module 2.에서 생성한 Lambda의 코드를 Secrets Manager와 Proxy에 접근할 수 있도록 수정해야 합니다. 따라서 AWS 콘솔에서 Lambda 를 검색하여 `serverless-workshop-lambda` 함수의 화면으로 진입합니다.
+1. 먼저 Lambda의 IAM role에 Secrets Manager의 권한을 부여해야 합니다. IAM 콘솔 화면으로 진입하여 왼쪽 패널의 **역할**을 클릭하고, `serverless-workshop`을 검색하면 1개의 Lambda IAM role을 찾을 수 있습니다. (Lambda를 생성할 때 자동으로 생성된 IAM role입니다)
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/lambda_iam_1.png"></img></div>
+
+2. 그리고 해당 role을 클릭하고, **정책연결**을 클릭합니다. 정책연결 화면에서 `SecretsManagerReadWrite` 권한을 찾아 추가합니다.
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/lambda_iam_2.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/lambda_iam_3.png"></img></div>
+
+3. 아래 사진과 같이 추가가 된걸 확인하였으면 Lambda 콘솔 화면으로 넘어갑니다.
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/lambda_iam_4.png"></img></div>
+
+4. Module 2.에서 생성한 Lambda의 코드를 Secrets Manager와 Proxy에 접근할 수 있도록 수정해야 합니다. 따라서 AWS 콘솔에서 Lambda 를 검색하여 `serverless-workshop-lambda` 함수의 화면으로 진입합니다.
    
-2. 그리고 Lambda의 코드를 [Lambda Module 3 샘플코드](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/src/module3_lambda.py)로 대체합니다.
+5. 그리고 Lambda의 코드를 [Lambda Module 3 샘플코드](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/src/module3_lambda.py)로 대체합니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/fix_lambda.png"></img></div>
 
-3. 그리고 *16줄*에서 `host=#'your rds proxy'` 를 Step 2. 에서 생성한 RDS Proxy의 Endpoint로 대체하고, **Deploy** 버튼을 클릭하여 배포를 완료합니다.
+6. 그리고 *16줄*에서 `host=#'your rds proxy'` 를 Step 2. 에서 생성한 RDS Proxy의 Endpoint로 대체하고, **Deploy** 버튼을 클릭하여 배포를 완료합니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/fix_lambda_2.png"></img></div>
 
-4. Module 2. 에서 생성했던 **API Gateway 콘솔 화면의 스테이지**로 진입하여 생성되어있는 URL을 브라우저 혹은 터미널에서 호출하여 {"statusCode": 200, "body": "your RDS time"}이 제대로 나오는 것을 확인합니다.
+7. Module 2. 에서 생성했던 **API Gateway 콘솔 화면의 스테이지**로 진입하여 생성되어있는 URL을 브라우저 혹은 터미널에서 호출하여 {"statusCode": 200, "body": "your RDS time"}이 제대로 나오는 것을 확인합니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/create_api_gateway_8.png"></img></div>
