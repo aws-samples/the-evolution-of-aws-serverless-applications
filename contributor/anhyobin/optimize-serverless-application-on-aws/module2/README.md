@@ -10,6 +10,10 @@ Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lamb
 
 이번 실습에서 구성하는 리소스들을 위한 네트워크 환경을 먼저 구성합니다. 데이터베이스를 DynamoDB 와 같은 리전 서비스를 활용한다면 필요없는 단계겠지만 오늘 실습에는 Amazon RDS 를 활용하기 때문에 이를 위한 VPC 구성이 우선 되어야 합니다.
 
+1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 Amazon VPC 서비스로 이동합니다. 리전은 서울(ap-northeast-2)을 사용합니다.
+2. 메인 화면의 [Launch VPC Wizard] 버튼을 클릭하여 VPC 생성을 시작합니다.
+
+
 1. 먼저 Lambda, RDS를 위한 Subnet을 생성해야 합니다. Lambda는 기본적으로 Subnet을 요구하지 않습니다. 하지만 일반적으로 RDS는 private Subnet으로 구성하여 외부와 통신이 되지 않도록 구성합니다. 따라서 Lambda와 RDS간의 통신이 되기 위해서는 추가적인 설정이 필요합니다. 본 실습에서는 Lambda에 VPC 네트워크 액세스를 설정하여 진행합니다.
 
 RDS를 위한 Subnet, Lambda를 위한 Subnet 각각 2세트를 생성합니다.
