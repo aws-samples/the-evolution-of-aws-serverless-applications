@@ -6,7 +6,9 @@ Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lamb
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/module2_architecture.jpg"></img></div>
 
-### Step 1. Lambda, RDS를 위한 Subnet, Security Group 생성
+### Step 1. 서버리스 애플리케이션에서 사용할 Amazon VPC 생성
+
+이번 실습에서 구성하는 리소스들을 위한 네트워크 환경을 먼저 구성합니다. 데이터베이스를 DynamoDB 와 같은 리전 서비스를 활용한다면 필요없는 단계겠지만 오늘 실습에는 Amazon RDS 를 활용하기 때문에 이를 위한 VPC 구성이 우선 되어야 합니다.
 
 1. 먼저 Lambda, RDS를 위한 Subnet을 생성해야 합니다. Lambda는 기본적으로 Subnet을 요구하지 않습니다. 하지만 일반적으로 RDS는 private Subnet으로 구성하여 외부와 통신이 되지 않도록 구성합니다. 따라서 Lambda와 RDS간의 통신이 되기 위해서는 추가적인 설정이 필요합니다. 본 실습에서는 Lambda에 VPC 네트워크 액세스를 설정하여 진행합니다.
 
