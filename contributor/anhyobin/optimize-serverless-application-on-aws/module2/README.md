@@ -2,7 +2,7 @@
 
 이번 워크샵부터는 AWS Lambda 를 중심으로 Amazon API Gateway 를 연동해 간단한 REST API 기반 서버리스 애플리케이션을 개발해보겠습니다. [AWS 의 서버리스 서비스](https://aws.amazon.com/serverless/getting-started)들을 사용하면 내장된 애플리케이션 가용성과 유연한 확장 기능을 활용해 비용 효율적인 애플리케이션을 구축하고 배포하는 것이 가능해집니다.
 
-Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lambda 뿐만 아니라 Amazon RDS 를 연결하는 작업까지 진행됩니다. 이미 AWS 에는 워크로드 별로 참고할  [다양한 서버리스 애플리케이션의 아키텍처](https://aws.amazon.com/blogs/architecture/ten-things-serverless-architects-should-know/)가 존재하지만 그 중에서도 가장 기본이 되는 구조로 이해하시고 실습을 진행하면 됩니다.
+Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lambda 뿐만 아니라 Amazon RDS 를 연결하는 작업까지 진행됩니다. 이미 AWS 에는 워크로드 별로 참고할 수  [다양한 서버리스 애플리케이션의 아키텍처](https://aws.amazon.com/blogs/architecture/ten-things-serverless-architects-should-know/)가 존재하지만 그 중에서도 가장 기본이 되는 구조로 이해하시고 실습을 진행하면 됩니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/module2_architecture.jpg"></img></div>
 
