@@ -20,12 +20,12 @@ Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lamb
 5. VPC ID 에는 앞서 생성한 **serverless-app** VPC 를 선택한 뒤 아래와 같이 4개의 서브넷을 생성합니다. 하나씩 입력한 뒤 아래 [Add new subnet] 버튼을 클릭하여 한번에 추가할 수 있습니다.
 
 <center>
-|Subnet name|Availability Zone|IPv4 CIDR block|
-|------|---|---|
-|lambda-subnet-a|ap-northeast-2a|10.0.1.0/24|
-|lambda-subnet-c|ap-northeast-2c|10.0.2.0/24|
-|rds-subnet-a|ap-northeast-2a|10.0.10.0/24|
-|rds-subnet-c|ap-northeast-2c|10.0.20.0/24|
+  |Subnet name|Availability Zone|IPv4 CIDR block|
+  |------|---|---|
+  |lambda-subnet-a|ap-northeast-2a|10.0.1.0/24|
+  |lambda-subnet-c|ap-northeast-2c|10.0.2.0/24|
+  |rds-subnet-a|ap-northeast-2a|10.0.10.0/24|
+  |rds-subnet-c|ap-northeast-2c|10.0.20.0/24|
 </center>
 
 
