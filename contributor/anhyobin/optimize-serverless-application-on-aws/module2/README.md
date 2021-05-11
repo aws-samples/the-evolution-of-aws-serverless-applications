@@ -12,7 +12,7 @@ Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lamb
 
 1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 Amazon VPC 서비스로 이동합니다. 리전은 서울(ap-northeast-2)을 사용합니다.
 2. 화면 좌측의 [Your VPCs] 로 이동한 뒤 상단의 [Create VPC] 버튼을 클릭하여 VPC 생성을 시작합니다.
-3. [Name tag - optional] 에는 **serverless-app** 을 입력하고 [IPv4 CIDR block] 에는 **172.31.0.0/16** 을 입력한 뒤 [Create VPC] 버튼을 클릭하여 생성을 완료합니다.
+3. [Name tag - optional] 에는 **serverless-app** 을 입력하고 [IPv4 CIDR block] 에는 **10.0.0.0/16** 을 입력한 뒤 [Create VPC] 버튼을 클릭하여 생성을 완료합니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/1.png"></img></div>
 
