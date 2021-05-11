@@ -100,9 +100,9 @@ import pymysql
 
 def lambda_handler(event, context):
     db = pymysql.connect(
-        host=#'your rds endpoint', 
-        user=#'your user', 
-        password=#'your password'
+        host='YOUR RDS ENDPOINT', 
+        user='YOUR DATABASE MASTER USERNAME', 
+        password='YOUR MASTER PASSWORD'
         )
 
     cursor = db.cursor()
