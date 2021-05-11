@@ -57,6 +57,14 @@ Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lamb
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/6.png"></img></div>
 
+6. RDS 생성을 시작합니다. 좌측의 [Databases] 옵션으로 이동한 뒤 [Create database] 를 선택합니다.
+7. [Engine options] 에는 [MySQL] 을 선택합니다. [Version] 은 **MySQL 5.7.33** 을 선택합니다. Module 3 에서 사용할 RDS Proxy 는 2021년 5월을 기준으로 MySQL 5.6, 5.7 을 지원하고 있으며 RDS Proxy 의 보다 자세한 제한 사항은 [여기](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy.limits)에서 확인할 수 있습니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/7.png"></img></div>
+
+8. 하단 Settings 에서 [DB instance identifier] 에는 **serverless-app-rds** 를 입력합니다. Credentials Settings 에서 [Master username] 은 기본 값인 **admin** 으로 두고 [Master password] 와 [Confirm password] 에는 **Passw0rd** 를 입력합니다. 혹은 다른 기억할 수 있는 비밀번호를 입력합니다.
+///
+
 1. 먼저 Lambda, RDS를 위한 Subnet을 생성해야 합니다. Lambda는 기본적으로 Subnet을 요구하지 않습니다. 하지만 일반적으로 RDS는 private Subnet으로 구성하여 외부와 통신이 되지 않도록 구성합니다. 따라서 Lambda와 RDS간의 통신이 되기 위해서는 추가적인 설정이 필요합니다. 본 실습에서는 Lambda에 VPC 네트워크 액세스를 설정하여 진행합니다.
 
 RDS를 위한 Subnet, Lambda를 위한 Subnet 각각 2세트를 생성합니다.
