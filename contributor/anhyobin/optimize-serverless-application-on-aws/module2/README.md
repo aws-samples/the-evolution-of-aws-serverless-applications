@@ -32,6 +32,12 @@ Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lamb
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/3.png"></img></div>
 
+7. RDS 와 Lambda 에서 각각 사용할 보안 그룹을 생성합니다. RDS 의 경우 이 후 생성할 Lambda 와 RDS Proxy 에서 접근이 허용되도록 구성할 것입니다.
+8. 좌측의 [Security Groups] 메뉴로 이동한 뒤 [Create security group] 버튼을 클릭합니다.
+9. [Security group name] 에는 **lambda-sg** 를 입력하고 [Description] 을 적은  [VPC] 는 앞서 생성한 **serverless-app** 을 선택합니다. Lambda 의 경우 별도의 인바운드 규칙이 필요하지 않습니다. 하단의 [Create security group] 버튼을 클릭하여 완료합니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/4.png"></img></div>
+
 1. 먼저 Lambda, RDS를 위한 Subnet을 생성해야 합니다. Lambda는 기본적으로 Subnet을 요구하지 않습니다. 하지만 일반적으로 RDS는 private Subnet으로 구성하여 외부와 통신이 되지 않도록 구성합니다. 따라서 Lambda와 RDS간의 통신이 되기 위해서는 추가적인 설정이 필요합니다. 본 실습에서는 Lambda에 VPC 네트워크 액세스를 설정하여 진행합니다.
 
 RDS를 위한 Subnet, Lambda를 위한 Subnet 각각 2세트를 생성합니다.
