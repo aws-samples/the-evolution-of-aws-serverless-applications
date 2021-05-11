@@ -92,7 +92,7 @@ Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lamb
 
 6. 위와 같이 구성했다면 [Create function] 버튼을 클릭하여 Lambda 함수를 생성을 완료합니다.
 7. 생성한 Lambda 함수 화면으로 자동으로 이동합니다. 화면 중간의 [Code source] 에 해당 Lambda 함수에 포함된 코드를 확인할 수 있습니다. 좌측의 **lambda_function.py** 를 더블 클릭하여 선택합니다.
-8. 기본으로 제공되는 코드를 삭제한 뒤 다음의 [Python 코드](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/src/module2_lambda.py)를 붙여 넣습니다.
+8. 기본으로 제공되는 코드를 삭제한 뒤 다음의 Python 코드를 붙여 넣습니다.
 
 ```Python
 import json
