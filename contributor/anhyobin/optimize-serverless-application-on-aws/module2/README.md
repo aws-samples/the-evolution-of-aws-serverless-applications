@@ -77,9 +77,18 @@ Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lamb
 
 ### Step 3. AWS Lambda 구성
 
-이번 단계부터 본격적으로 서버리스 애플리케이션의 핵심이 되는 AWS Lambda 함수를 구성합니다. 이렇게 구성하는 Lambda 함수는 RESTful 한 방식으로 동작하며 앞서 생성한 데이터베이스에 쿼리를 하게 됩니다. 이를 위해 VPC 에서 리소스에 액세스 하는 Lambda 를 구성하는 작업 등을 수행합니다.
+이번 단계부터 본격적으로 서버리스 애플리케이션의 핵심이 되는 AWS Lambda 함수를 구성합니다. 이렇게 구성하는 Lambda 함수는 RESTful 한 방식으로 동작하며 앞서 생성한 데이터베이스에 쿼리를 하게 됩니다. 이를 위해 [VPC 의 리소스에 액세스 하는 Lambda 함수](https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html) 를 구성하는 작업 등을 수행합니다.
 
-1. 1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS Lambda 서비스로 이동합니다.
+1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS Lambda 서비스로 이동합니다.
+2. [Create function] 버튼을 클릭하여 함수 생성을 시작합니다.
+3. [Function name] 에는 **serverless-app-lambda** 를 입력하고 [Runtime] 은 **Python 3.8** 을 선택합니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/10.png"></img></div>
+
+4. 하단의 [Advanced settings] 의 드롭다운 버튼을 클릭합니다.
+5. Network 에서 [VPC - optional] 에는 **serverless-app** 을 선택하고 [Subnets] 는 **lambda-subnet-a** 와 **lambda-subnet-c** 를 선택합니다. [Security groups] 는 **lambda-sg** 를 선택합니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/11.png"></img></div>
 
 ///
 
