@@ -17,7 +17,13 @@ Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lamb
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/1.png"></img></div>
 
 4. VPC 에 서브넷을 가용 영역별로 2개씩 총 4개를 생성합니다. 좌측의 [Subnets] 메뉴로 이동한 뒤 [Create subnet] 버튼을 선택합니다.
-5. VPC ID 에는 앞서 생성한 **serverless-app** VPC 를 선택한 뒤 아래와 같이 4개의 서브넷을 생성합니다.
+5. VPC ID 에는 앞서 생성한 **serverless-app** VPC 를 선택한 뒤 아래와 같이 4개의 서브넷을 생성합니다. 하나씩 입력한 뒤 아래 [Add new subnet] 버튼을 클릭하여 한번에 추가할 수 있습니다.
+
+|Subnet name|Availability Zone|IPv4 CIDR block|
+|lambda-subnet-a|ap-northeast-2a|10.0.1.0/24|
+|lambda-subnet-c|ap-northeast-2c|10.0.2.0/24|
+|rds-subnet-a|ap-northeast-2a|10.0.10.0/24|
+|rds-subnet-c|ap-northeast-2c|10.0.20.0/24|
 
 
 
