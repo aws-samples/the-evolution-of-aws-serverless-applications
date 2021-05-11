@@ -63,6 +63,18 @@ Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lamb
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/7.png"></img></div>
 
 8. 하단 Settings 에서 [DB instance identifier] 에는 **serverless-app-rds** 를 입력합니다. Credentials Settings 에서 [Master username] 은 기본 값인 **admin** 으로 두고 [Master password] 와 [Confirm password] 에는 **Passw0rd** 를 입력합니다. 혹은 다른 기억할 수 있는 비밀번호를 입력합니다.
+9. [DB instance class] 는 기본값인 **db.m5.xlarge** 를 유지하고 아래 Storage 옵션에서 [Storage type] 은 **General Purpose (SSD)** 로 변경합니다. [Allocated storage] 는 **20 GiB** 를 입력하고 아래 [Enable storage autoscaling] 옵션은 비활성화 해줍니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/8.png"></img></div>
+
+10. 워크샵 환경에서는 Multi-AZ 배포를 할 필요는 없기 때문에 Availability & durability 의 [Multi-AZ deployment] 옵션은 **Do not create a standby instance** 를 체크합니다. 프로덕션 환경에서는 standby instance 옵션을 사용하는 것이 좋습니다.
+10. 아래 Connectivity 옵션에서 [Virtual private cloud (VPC)] 는 **serverless-app** 을 선택하고 [Subnet group] 은 **rds-subnet-group** 을 선택합니다.
+11. [VPC security group] 은 **Choose existing** 을 선택하고 [Existing VPC security groups] 에 앞서 생성한 **rds-sg** 를 추가로 선택해줍니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/9.png"></img></div>
+
+12. 
+
 ///
 
 1. 먼저 Lambda, RDS를 위한 Subnet을 생성해야 합니다. Lambda는 기본적으로 Subnet을 요구하지 않습니다. 하지만 일반적으로 RDS는 private Subnet으로 구성하여 외부와 통신이 되지 않도록 구성합니다. 따라서 Lambda와 RDS간의 통신이 되기 위해서는 추가적인 설정이 필요합니다. 본 실습에서는 Lambda에 VPC 네트워크 액세스를 설정하여 진행합니다.
