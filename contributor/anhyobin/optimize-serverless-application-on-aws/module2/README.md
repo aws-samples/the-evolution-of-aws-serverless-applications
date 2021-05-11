@@ -16,6 +16,11 @@ Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lamb
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/1.png"></img></div>
 
+4. VPC 에 서브넷을 가용 영역별로 2개씩 총 4개를 생성합니다. 좌측의 [Subnets] 메뉴로 이동한 뒤 [Create subnet] 버튼을 선택합니다.
+5. VPC ID 에는 앞서 생성한 **serverless-app** VPC 를 선택한 뒤 아래와 같이 4개의 서브넷을 생성합니다.
+
+
+
 1. 먼저 Lambda, RDS를 위한 Subnet을 생성해야 합니다. Lambda는 기본적으로 Subnet을 요구하지 않습니다. 하지만 일반적으로 RDS는 private Subnet으로 구성하여 외부와 통신이 되지 않도록 구성합니다. 따라서 Lambda와 RDS간의 통신이 되기 위해서는 추가적인 설정이 필요합니다. 본 실습에서는 Lambda에 VPC 네트워크 액세스를 설정하여 진행합니다.
 
 RDS를 위한 Subnet, Lambda를 위한 Subnet 각각 2세트를 생성합니다.
