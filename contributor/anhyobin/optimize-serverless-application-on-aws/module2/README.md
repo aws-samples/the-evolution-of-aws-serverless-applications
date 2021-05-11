@@ -8,7 +8,7 @@ Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lamb
 
 ### Step 1. 서버리스 애플리케이션에서 사용할 Amazon VPC 생성
 
-이번 실습에서 구성하는 리소스들을 위한 네트워크 환경을 먼저 구성합니다. 데이터베이스를 DynamoDB 와 같은 리전 서비스를 활용한다면 필요없는 단계겠지만 오늘 실습에는 Amazon RDS 를 활용하기 때문에 이를 위한 VPC 구성이 우선 되어야 합니다.
+이번 실습에서 구성하는 리소스들을 위한 네트워크 환경을 먼저 구성합니다. 데이터베이스를 Amazon DynamoDB 와 같은 리전 서비스를 활용한다면 필요없는 단계겠지만 오늘 실습에는 Amazon RDS 를 활용하기 때문에 이를 위한 VPC 구성이 우선 되어야 합니다.
 
 1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 Amazon VPC 서비스로 이동합니다. 리전은 서울(ap-northeast-2)을 사용합니다.
 2. 화면 좌측의 [Your VPCs] 로 이동한 뒤 상단의 [Create VPC] 버튼을 클릭하여 VPC 생성을 시작합니다.
@@ -44,6 +44,10 @@ Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lamb
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/5.png"></img></div>
 
 ### Step 2. Amazon RDS 생성
+
+이번 실습은 많은 분들이 사용 중이고 가장 익숙한 RDBMS 를 기준으로 이를 서버리스 애플리케이션에서 활용하는 방법을 살펴봅니다. AWS 에는 사용할 수 있는 다양한 [데이터베이스 옵션](https://aws.amazon.com/products/databases/) 이 제공되고 있고 서버리스 데이터 베이스인 Amazon DynamoDB 를 활용하는 사례가 많이 있습니다. 하지만 최근에는 [Amazon Aurora Serverless](https://aws.amazon.com/rds/aurora/serverless/) 나 [Amazon RDS Proxy](https://aws.amazon.com/rds/proxy/) 등의 새로운 기능이 추가되어 조금 더 익숙한 데이터베이스를 서버리스 애플리케이션에서도 활용할 수 있게 되었습니다.
+
+이번 단계에서는 이 후 실습에서 사용할 Amazon RDS for MySQL 을 생성하겠습니다.
 
 1. 먼저 Lambda, RDS를 위한 Subnet을 생성해야 합니다. Lambda는 기본적으로 Subnet을 요구하지 않습니다. 하지만 일반적으로 RDS는 private Subnet으로 구성하여 외부와 통신이 되지 않도록 구성합니다. 따라서 Lambda와 RDS간의 통신이 되기 위해서는 추가적인 설정이 필요합니다. 본 실습에서는 Lambda에 VPC 네트워크 액세스를 설정하여 진행합니다.
 
