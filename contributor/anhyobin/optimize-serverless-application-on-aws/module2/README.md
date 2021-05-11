@@ -63,7 +63,7 @@ Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lamb
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/7.png"></img></div>
 
 8. 하단 Settings 에서 [DB instance identifier] 에는 **serverless-app-rds** 를 입력합니다. Credentials Settings 에서 [Master username] 은 기본 값인 **admin** 으로 두고 [Master password] 와 [Confirm password] 에는 **Passw0rd** 를 입력합니다. 혹은 다른 기억할 수 있는 비밀번호를 입력합니다.
-9. [DB instance class] 는 기본값인 **db.m5.xlarge** 를 유지하고 아래 Storage 옵션에서 [Storage type] 은 **General Purpose (SSD)** 로 변경합니다. [Allocated storage] 는 **20 GiB** 를 입력하고 아래 [Enable storage autoscaling] 옵션은 비활성화 해줍니다.
+9. [DB instance class] 는 기본값인 **db.m5.large** 로 변경하고 아래 Storage 옵션에서 [Storage type] 은 **General Purpose (SSD)** 로 변경합니다. [Allocated storage] 는 **20 GiB** 를 입력하고 아래 [Enable storage autoscaling] 옵션은 비활성화 해줍니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/8.png"></img></div>
 
