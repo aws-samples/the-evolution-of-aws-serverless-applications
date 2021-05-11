@@ -75,6 +75,12 @@ Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lamb
 
 12. 다른 옵션은 기본값을 유지한채 [Create database] 를 선택하여 RDS 생성을 완료합니다.
 
+### Step 3. AWS Lambda 구성
+
+이번 단계부터 본격적으로 서버리스 애플리케이션의 핵심이 되는 AWS Lambda 함수를 구성합니다. 이렇게 구성하는 Lambda 함수는 RESTful 한 방식으로 동작하며 앞서 생성한 데이터베이스에 쿼리를 하게 됩니다. 이를 위해 VPC 에서 리소스에 액세스 하는 Lambda 를 구성하는 작업 등을 수행합니다.
+
+1. 1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS Lambda 서비스로 이동합니다.
+
 ///
 
 1. 먼저 Lambda, RDS를 위한 Subnet을 생성해야 합니다. Lambda는 기본적으로 Subnet을 요구하지 않습니다. 하지만 일반적으로 RDS는 private Subnet으로 구성하여 외부와 통신이 되지 않도록 구성합니다. 따라서 Lambda와 RDS간의 통신이 되기 위해서는 추가적인 설정이 필요합니다. 본 실습에서는 Lambda에 VPC 네트워크 액세스를 설정하여 진행합니다.
