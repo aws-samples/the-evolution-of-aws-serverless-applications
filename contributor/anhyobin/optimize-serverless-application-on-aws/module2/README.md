@@ -49,6 +49,14 @@ Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lamb
 
 이번 단계에서는 이 후 실습에서 사용할 Amazon RDS for MySQL 을 생성하겠습니다.
 
+1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 Amazon RDS 서비스로 이동합니다.
+2. 좌측의 [Subnet groups] 메뉴로 이동한 뒤 [Create DB Subnet Group] 을 선택합니다.
+3. [Name] 에는 **database-subnet-group** 을 입력하고 [Description] 을 입력한 뒤 [VPC] 는 **serverless-app** 을 선택합니다.
+4. 하단의 Add subnets 의 [Availability Zones] 에는 **ap-northeast-2a** 와 **ap-northeast-2c** 두가지를 선택합니다.
+5. [Subnets] 에는 앞서 데이터베이스용으로 만든 서브넷 두 가지 **10.0.10.0/24** 와 **10.0.20.0/24** 를 선택하고 [Create] 를 클릭하여 완료합니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/6.png"></img></div>
+
 1. 먼저 Lambda, RDS를 위한 Subnet을 생성해야 합니다. Lambda는 기본적으로 Subnet을 요구하지 않습니다. 하지만 일반적으로 RDS는 private Subnet으로 구성하여 외부와 통신이 되지 않도록 구성합니다. 따라서 Lambda와 RDS간의 통신이 되기 위해서는 추가적인 설정이 필요합니다. 본 실습에서는 Lambda에 VPC 네트워크 액세스를 설정하여 진행합니다.
 
 RDS를 위한 Subnet, Lambda를 위한 Subnet 각각 2세트를 생성합니다.
