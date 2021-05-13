@@ -139,12 +139,16 @@ def lambda_handler(event, context):
 
 이번 실습에서는 pymysql 라이브러리를 Lambda Layer 로 구성한 뒤 이를 함수가 참조하는 구성을 합니다.
 
-1. 우선 다음 [pypi.org](https://pypi.org/project/PyMySQL/#files) 에서 tar.gz 로 압축된 파일을 다운 받아 zip 으로 새로 압축하거나, 다음 [링크](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/src/pymysql.zip) 를 통해 pymysql 을 다운받습니다.
+1. 우선 다음 [pypi.org](https://pypi.org/project/PyMySQL/#files) 에서 Python 3 용 tar.gz 압축 파일을 다운 받아 zip 으로 새로 압축하거나, 다음 [링크](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/src/pymysql.zip) 를 통해 pymysql 을 다운받습니다.
 2. 왼쪽 메뉴 탭의 Additional resources 의 [Layers] 메뉴로 이동한 뒤 [Create layer] 버튼을 선택합니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/13.png"></img></div>
 
-3. [Name] 에는 **pymysql** 을 입력하고 
+3. [Name] 에는 **pymysql** 을 입력하고 [Upload a .zip file] 을 선택한 뒤 [Upload] 버튼을 클릭해 앞서 다운 받은 pymysql.zip 파일을 업로드 합니다. [Compatible runtimes] 에는 **Python 3.8** 을 선택합니다. 아래 스크린샷과 같이 구성 후 [Create] 버튼을 클릭하여 Lambda Layer 생성을 완료합니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/14.png"></img></div>
+
+
 
 11. 작성한 Lambda 함수에는 
 
