@@ -75,7 +75,7 @@ Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lamb
 
 12. 다른 옵션은 기본값을 유지한채 [Create database] 를 선택하여 RDS 생성을 완료합니다.
 
-### Step 3. AWS Lambda 구성
+### Step 3-1. AWS Lambda 구성
 
 이번 단계부터 본격적으로 서버리스 애플리케이션의 핵심이 되는 AWS Lambda 함수를 구성합니다. 이렇게 구성하는 Lambda 함수는 RESTful 한 방식으로 동작하며 앞서 생성한 데이터베이스에 쿼리를 하게 됩니다. 이를 위해 [VPC 의 리소스에 액세스 하는 Lambda 함수](https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html) 를 구성하는 작업 등을 수행합니다.
 
@@ -119,17 +119,29 @@ def lambda_handler(event, context):
     }
 ```
 
-9. 코드 상 5:9 라인의 pymysql.connect() 부분의 host, user, password 부분에 대한 업데이트가 필요합니다. 현재의 실습 가이드대로 구성 했다면 아래의 정보로 업데이트 한 뒤 [Deploy] 버튼을 클릭하여 업데이트한 내용의 배포를 마칩니다.
-
-| host | user | password |
-| --- | --- | --- |
-| RDS Endpoint | admin | Passw0rd |
+9. 코드 상 5:9 라인의 pymysql.connect() 부분의 host, user, password 부분에 대한 업데이트가 필요합니다. 우선 host 에 대한 정보는 앞서 생성한 RDS 에서 확인할 수 있습니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/12.png"></img></div>
 
+10. RDS Endpoint 정보를 확인하여 아래의 내용을 Lambda 함수에 업데이트 합니다.
+
+| host | user | password |
+| --- | --- | --- |
+| Your RDS Endpoint | admin | Passw0rd |
+
 > Module 2 에서는 가장 간편한 방법으로 Lambda 에서 RDS 에 연결하기 위해 DB 의 크리덴셜을 직접 코드에 입력하여 접속합니다. 하지만 이는 보안상 안전한 방법은 아닙니다. 실제 프로덕션 환경에는 [AWS Secrets Manager 등을 활용](https://aws.amazon.com/blogs/security/how-to-securely-provide-database-credentials-to-lambda-functions-by-using-aws-secrets-manager/)해 DB 크리덴셜 정보를 직접 코드에 입력하는 것이 더 안전합니다.
 
-10. 
+### Step 3-2. Lambda Layer 구성
+
+앞서 Step 3-1 에서 작성한 Lambda 함수에는 pymysql 이라는 라이브러리가 포함되어 있습니다. 기본적으로 Lambda 에는 AWS SDK for Python (Boto3) 와 각각의 런타임 별 기본 라이브러리는 포함되어 있습니다. 그 외에 다른 라이브러리의 사용을 위해서는 [Lambda 배포 패키지](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html) 를 사용하여 Lambda 함수 코드를 배포해야 합니다.
+
+이번 실습에는 여기에서 한단계 더 나아가 [Lambda Layer](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) 를 활용합니다. 이 기능을 활용하여 여러 Lambda 함수 간에 코드를 공유할 수 있고, .zip 배포 패키지 크기를 줄일 수 있으므로 Lambda 를 통한 운영에도 도움이 됩니다. Lambda 함수별로 최대 5개의 Lambda Layer 를 포함할 수 있으며, 보다 자세한 내용은 [다음](https://aws.amazon.com/blogs/compute/using-lambda-layers-to-simplify-your-development-process/) 에서 확인할 수 있습니다.
+
+이번 실습에서는 pymysql 라이브러리를 Lambda Layer 로 구성한 뒤 이를 함수가 참조하는 구성을 합니다.
+
+
+
+11. 작성한 Lambda 함수에는 
 
 ///
 
