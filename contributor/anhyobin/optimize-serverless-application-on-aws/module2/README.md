@@ -125,7 +125,11 @@ def lambda_handler(event, context):
 | --- | --- | --- |
 | RDS Endpoint | admin | Passw0rd |
 
-1. 
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/12.png"></img></div>
+
+> Module 2 에서는 가장 간편한 방법으로 Lambda 에서 RDS 에 연결하기 위해 DB 의 크리덴셜을 직접 코드에 입력하여 접속합니다. 하지만 이는 보안상 안전한 방법은 아닙니다. 실제 프로덕션 환경에는 [AWS Secrets Manager 등을 활용](https://aws.amazon.com/blogs/security/how-to-securely-provide-database-credentials-to-lambda-functions-by-using-aws-secrets-manager/)해 DB 크리덴셜 정보를 직접 코드에 입력하는 것이 더 안전합니다.
+
+10. 
 
 ///
 
