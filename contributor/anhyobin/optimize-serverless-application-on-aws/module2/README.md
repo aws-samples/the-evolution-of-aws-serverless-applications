@@ -153,9 +153,21 @@ def lambda_handler(event, context):
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/15.png"></img></div>
 
+6. 아래와 같이 Layers 메뉴에 pymysql 이 추가된 것을 확인할 수 있습니다. Lambda 함수 구성이 끝났습니다.
 
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/16.png"></img></div>
 
+### Step 3-3. Lambda 테스트
 
+1. 구성한 Lambda 의 테스를 해봅니다. Lambda 콘솔 중앙의 [Test] 메뉴로 이동합니다.
+2. [Template] 는 **hello-world** 기본값을 사용하고 [Name] 에는 **apptest** 를 입력한 뒤 우측의 [Test] 버튼을 클릭합니다. 다음과 같은 테스트 결과가 표시됩니다.
+
+```JSON
+{
+  "statusCode": 200,
+  "body": "\"2021-05-13T06:06:26\""
+}
+```
 
 
 11. 작성한 Lambda 함수에는 
