@@ -174,14 +174,24 @@ def lambda_handler(event, context):
 }
 ```
 
-> 한 가지 재밌는 점은 최초 테스트 때의 Duration 을 확인한 뒤 이 후에 다시 테스트를 수행하면 실행 시간이 최초 실행에 비해 줄어드는 것을 확인할 수 있습니다. 이는 Lambda 의 콜드스타트 때문입니다. 이 후 [Module 4. XXXX] 에서는 부하테스트와 더불어 콜드스타트 시간을 최적화 하는 방법에 대해 다루고 있습니다. 다음 [블로그](https://aws.amazon.com/blogs/compute/new-for-aws-lambda-predictable-start-up-times-with-provisioned-concurrency/) 에 이에 관련된 내용 설명이 있습니다.
+> 한 가지 재밌는 점은 최초 테스트 때의 Duration 을 확인한 뒤 이 후에 다시 테스트를 수행하면 실행 시간이 최초 실행에 비해 줄어드는 것을 확인할 수 있습니다. 이는 Lambda 의 콜드스타트 때문입니다. 이 후 [Module 4. XXXX]() 에서는 부하테스트와 더불어 콜드스타트 시간을 최적화 하는 방법에 대해 다루고 있습니다. 다음 [블로그](https://aws.amazon.com/blogs/compute/new-for-aws-lambda-predictable-start-up-times-with-provisioned-concurrency/) 에 이에 관련된 내용 설명이 있습니다.
 
 ### Step 4. Amazon API Gateway 구성
 
+AWS Lambda 는 [Module 1. 나의 첫 AWS Lambda](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/README.md) 에서와 같이 이벤트에 의한 방식으로 호출할 수도 있지만 REST API 작업 등을 위해 Amazon API Gateway 에서 호출하는 방식도 많이 사용되고 있습니다. 그 외에도 [Lambda 함수를 호출하는 다양한 방법](https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html)이 존재합니다.
 
+[Amazon API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html) 는 REST 및 WebSocketAPI 등을 생성, 배포, 유지 관리 할 수 있는 AWS 서비스로 모든 규모의 API 를 개발자가 손쉽게 구성할 수 있도록 해줍니다.
 
+이번 실습에서는 Lambda 를 API Gateway 와 함께 사용하여 REST API 호출하는 것을 구성합니다. 실습 외에도 이 두 서비스를 연동하는 다양한 자습서가 제공되고 있습니다.
 
+1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 Amazon API Gateway 서비스로 이동합니다.
+2. 우측 상단의 [Create API] 를 클릭하고 [REST API] 옵션의 [Build] 버튼을 선택합니다.
 
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/18.png"></img></div>
+
+3. API 생성 화면에서 Create new API 에는 [New API] 를 선택하고 하단 Settings 의 [API name] 에는 **serverless-app-api** 를 입력합니다. [Endpoint Type] 은 **Regional** 을 선택합니다. [API 트래픽의 오리진에 따라 Edge, Regional, Private 등의 옵션](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-endpoint-types.html) 을 제공하고 있습니다. [Create API] 를 클릭하여 API 를 생성합니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/19.png"></img></div>
 
 
 ///
