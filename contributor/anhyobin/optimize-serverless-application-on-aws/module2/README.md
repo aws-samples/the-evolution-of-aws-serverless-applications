@@ -164,7 +164,9 @@ def lambda_handler(event, context):
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/17.png"></img></div>
 
-3. 작성한 Lambda 함수는 단순히 cursor.execute("select now()") 를 통해 현재 시간을 반환하는 동작을 합니다. 때문에 아래와 같이 "statusCode": 200 에 "body" 에 RDS 시간이 표시되면 Lambda 와 RDS가 정상적으로 통신하는 것을 확인할 수 있습니다.
+> 만약 테스트가 실패하면 pymysql.connect 부분에서 ,, '' 등 syntax 에러가 없는지 확인이 필요합니다. 모든 문자는 ''로 감싸져야합니다. 또한 host, user 라인의 끝에는 , 가 있어야 합니다.
+
+3. 작성한 Lambda 함수는 단순히 cursor.execute("select now()") 를 통해 현재 시간을 반환하는 동작을 합니다. 때문에 아래와 같이 "statusCode": 200 와 "body" 부분에 RDS 시간이 표시되면 Lambda 와 RDS가 정상적으로 통신하는 것을 확인할 수 있습니다.
 ```JSON
 {
   "statusCode": 200,
