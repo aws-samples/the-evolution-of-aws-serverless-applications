@@ -162,6 +162,9 @@ def lambda_handler(event, context):
 1. 구성한 Lambda 의 테스를 해봅니다. Lambda 콘솔 중앙의 [Test] 메뉴로 이동합니다.
 2. [Template] 는 **hello-world** 기본값을 사용하고 [Name] 에는 **apptest** 를 입력한 뒤 우측의 [Test] 버튼을 클릭합니다. 다음과 같은 테스트 결과가 표시됩니다.
 
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/17.png"></img></div>
+
+3. 작성한 Lambda 함수는 단순히 cursor.execute("select now()") 를 통해 현재 시간을 반환하는 동작을 합니다. 때문에 아래와 같이 "statusCode": 200 에 "body" 에 RDS 시간이 표시되면 Lambda 와 RDS가 정상적으로 통신하는 것을 확인할 수 있습니다.
 ```JSON
 {
   "statusCode": 200,
@@ -169,8 +172,15 @@ def lambda_handler(event, context):
 }
 ```
 
+> 한 가지 재밌는 점은 최초 테스트 때의 Duration 을 확인한 뒤 이 후에 다시 테스트를 수행하면 실행 시간이 최초 실행에 비해 줄어드는 것을 확인할 수 있습니다. 이는 Lambda 의 콜드스타트 때문입니다. 이 후 [Module 4. XXXX] 에서는 부하테스트와 더불어 콜드스타트 시간을 최적화 하는 방법에 대해 다루고 있습니다. 다음 [블로그](https://aws.amazon.com/blogs/compute/new-for-aws-lambda-predictable-start-up-times-with-provisioned-concurrency/) 에 이에 관련된 내용 설명이 있습니다.
 
-11. 작성한 Lambda 함수에는 
+### Step 4. Amazon API Gateway 구성
+
+
+
+
+
+
 
 ///
 
