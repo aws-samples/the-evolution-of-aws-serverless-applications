@@ -148,6 +148,14 @@ def lambda_handler(event, context):
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/14.png"></img></div>
 
+4. 앞서 생성한 **serverless-app-lambda** 함수로 이동한 뒤 하단 Layers 메뉴의 [Add a layer] 버튼을 클릭합니다.
+5. Layer source 는 [Custom layers] 를 선택하고 드롭 다운 메뉴에서 **pymysql** 을 선택한 뒤 [Version] 은 **1** 을 선택합니다. 배포를 여러번 했다면 버전은 다르게 보일 수 있습니다. [Add] 버튼을 선택하여 Lambda 에 추가하는 작업을 완료해줍니다. 
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/15.png"></img></div>
+
+
+
+
 
 
 11. 작성한 Lambda 함수에는 
