@@ -160,7 +160,7 @@ def lambda_handler(event, context):
 ### Step 3-3. Lambda 테스트
 
 1. 구성한 Lambda 의 테스를 해봅니다. Lambda 콘솔 중앙의 [Test] 메뉴로 이동합니다.
-2. [Template] 는 **hello-world** 기본값을 사용하고 [Name] 에는 **apptest** 를 입력하고 [Save changes] 를 클릭한 뒤 우측의 [Test] 버튼을 클릭해 . 다음과 같은 테스트 결과가 표시됩니다.
+2. [Template] 는 **hello-world** 기본값을 사용하고 [Name] 에는 **apptest** 를 입력하고 [Save changes] 를 클릭한 뒤 우측의 [Test] 버튼을 클릭해 테스트를 수행합니다. 다음과 같은 테스트 결과가 표시됩니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/17.png"></img></div>
 
