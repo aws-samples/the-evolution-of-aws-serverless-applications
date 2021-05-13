@@ -135,11 +135,16 @@ def lambda_handler(event, context):
 
 앞서 Step 3-1 에서 작성한 Lambda 함수에는 pymysql 이라는 라이브러리가 포함되어 있습니다. 기본적으로 Lambda 에는 AWS SDK for Python (Boto3) 와 각각의 런타임 별 기본 라이브러리는 포함되어 있습니다. 그 외에 다른 라이브러리의 사용을 위해서는 [Lambda 배포 패키지](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html) 를 사용하여 Lambda 함수 코드를 배포해야 합니다.
 
-이번 실습에는 여기에서 한단계 더 나아가 [Lambda Layer](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) 를 활용합니다. 이 기능을 활용하여 여러 Lambda 함수 간에 코드를 공유할 수 있고, .zip 배포 패키지 크기를 줄일 수 있으므로 Lambda 를 통한 운영에도 도움이 됩니다. Lambda 함수별로 최대 5개의 Lambda Layer 를 포함할 수 있으며, 보다 자세한 내용은 [다음](https://aws.amazon.com/blogs/compute/using-lambda-layers-to-simplify-your-development-process/) 에서 확인할 수 있습니다.
+여기에서 한단계 더 나아가 [Lambda Layer](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) 를 수 있습니다. 이 기능을 활용하여 여러 Lambda 함수 간에 코드를 공유할 수 있고, .zip 배포 패키지 크기를 줄일 수 있으므로 Lambda 를 통한 운영에도 도움이 됩니다. Lambda 함수별로 최대 5개의 Lambda Layer 를 포함할 수 있으며, 보다 자세한 내용은 [다음](https://aws.amazon.com/blogs/compute/using-lambda-layers-to-simplify-your-development-process/) 에서 확인할 수 있습니다.
 
 이번 실습에서는 pymysql 라이브러리를 Lambda Layer 로 구성한 뒤 이를 함수가 참조하는 구성을 합니다.
 
+1. 우선 다음 [pypi.org](https://pypi.org/project/PyMySQL/#files) 에서 tar.gz 로 압축된 파일을 다운 받아 zip 으로 새로 압축하거나, 다음 [링크](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/src/pymysql.zip) 를 통해 pymysql 을 다운받습니다.
+2. 왼쪽 메뉴 탭의 Additional resources 의 [Layers] 메뉴로 이동한 뒤 [Create layer] 버튼을 선택합니다.
 
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/13.png"></img></div>
+
+3. [Name] 에는 **pymysql** 을 입력하고 
 
 11. 작성한 Lambda 함수에는 
 
