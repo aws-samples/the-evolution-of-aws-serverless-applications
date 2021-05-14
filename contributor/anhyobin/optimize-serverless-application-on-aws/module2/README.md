@@ -199,7 +199,7 @@ AWS Lambda 는 [Module 1. 나의 첫 AWS Lambda](https://github.com/aws-samples/
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/21.png"></img></div>
 
-5. - GET - Setup 화면이 나타납니다. [Ingegration type] 은 **Lambda Function** 을 선택하고 [Lambda Region] 은 **ap-northeast-2** 를 선택합니다. [Lambda Function] 에는 **serverless-app-lambda** 를 선택합니다. [Save] 를 선택하여 API 메소드 생성을 완료합니다.
+5. / - GET - Setup 화면이 나타납니다. [Ingegration type] 은 **Lambda Function** 을 선택하고 [Lambda Region] 은 **ap-northeast-2** 를 선택합니다. [Lambda Function] 에는 **serverless-app-lambda** 를 선택합니다. [Save] 를 선택하여 API 메소드 생성을 완료합니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/22.png"></img></div>
 
