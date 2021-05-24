@@ -8,8 +8,22 @@
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/module3_architecture.jpg"></img></div>
 
+이번 실습은 앞서 Module 2 에서 생성한 서버리스 애플리케이션을 그대로 활용합니다.
+
+### Step 1. AWS Secrets Manager 구성
+
+1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS Secretes Manager 서비스로 이동합니다.
+2. 화면의 [Store a new secret] 버튼을 클릭합니다.
+3. Select secret type 은 [Credential for RDS database] 옵션을 선택하고 Module 2 에서 생성했던 DB 크리덴셜 정보를 입력합니다. [User name] 에는 **admin** [Password] 에는 **Passw0rd** 를 입력합니다. 아래 Select which RDS database this secret will access 옵션에서는 이전에 생성한 **serverless-app-rds** 를 선택한 뒤 [Next] 버튼을 클릭합니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/1.png"></img></div>
+
+4. [Secret name] 에는 **serverless-app-rds-secret** 을 입력하고 나머지는 기본 옵션을 유지한 채 [Next] 버튼을 클릭합니다.
+5. [DB 크리덴셜을 자동으로 로테이션](https://aws.amazon.com/blogs/security/rotate-amazon-rds-database-credentials-automatically-with-aws-secrets-manager/) 할 수도 있습니다. 이번 실습에서는 이를 활용하지는 않습니다. [Next] 버튼을 클릭합니다.
+6. 설정 값을 검토한 뒤 하단의 [Store] 를 선택하여 DB 인증 정보 저장을 완료합니다.
 
 
+////
 
 이 모듈에서는 Module 2.에서 생성한 API Gateway, Lambda, RDS를 기반으로 AWS Secrets Manager와 RDS Proxy 설정을 추가하는 과정입니다. 이 모듈을 추가함으로서 Lambda 기반 API application 서비스의 장점은 AWS Secrets Manager를 통하여 RDS의 보안 정보를 쉽게 관리할 수 있고, RDS Proxy를 설정함으로서 Connection pooling로 보다 효율적인 connection 관리로 API 의 성능을 향상 시킬 수 있습니다.
 
