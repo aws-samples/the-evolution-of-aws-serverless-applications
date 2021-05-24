@@ -2,7 +2,7 @@
 
 앞서 [Module 2. REST API 기반 서버리스 애플리케이션](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/README.md) 에서 간단한 서버리스 애플리케이션을 개발해봤습니다. 이 때는 DB 인증 정보를 Lambda 함수의 코드 자체에 직접 포함해 접근했는데 이는 보안상 안전한 방법은 아닙니다. 이런 문제를 극복하기 위해서 권장되는 방법은 [AWS Secrets Manager 를 활용해 Lambda 함수에 DB 크리덴셜 정보를 전달](https://aws.amazon.com/blogs/security/rotate-amazon-rds-database-credentials-automatically-with-aws-secrets-manager/) 하는 것입니다.
 
-또한 DB 의 커넥션을 모두 함수 내부의 Handler 에서 처리했습니다. 이렇게 개발할 경우 Lambda 함수가 호출될 때마다 DB 에 연결하고 종료하는 것이 반복되므로 실행 컨텍스트 재활용 측면에서 성능에 좋지 않은 영향이 생기게 됩니다. 하지만 DB 커넥션을 전역으로 선언할 경우 커넥션 종료에 대한 로직 처리가 어려워 각 DB 엔진이의 최대 연결 수를 초과하는 문제가 발생할 수 있습니다. 이 문제는 [Amazon RDS Proxy 를 통해 풀을 관리](https://docs.aws.amazon.com/lambda/latest/dg/configuration-database.html) 하고 Lambda 함수에서 쿼리를 릴레이하는 것이 좋습니다. 
+또한 DB 의 커넥션을 모두 함수 내부의 Handler 에서 처리했습니다. 이렇게 개발할 경우 Lambda 함수가 호출될 때마다 DB 에 연결하고 종료하는 것이 반복되므로 실행 컨텍스트 재활용 측면에서 성능에 좋지 않은 영향이 생기게 됩니다. 하지만 DB 커넥션을 전역으로 선언할 경우 커넥션 종료에 대한 로직 처리가 어려워 각 DB 엔진이의 최대 연결 수를 초과하는 문제가 발생할 수 있습니다. 이 문제는 [Amazon RDS Proxy 를 통해 풀을 관리](https://docs.aws.amazon.com/lambda/latest/dg/configuration-database.html) 하고 Lambda 함수에서 쿼리를 릴레이하면 큰 변경 없이 해결이 가능합니다.
 
 [서버리스 애플리케이션에는 사용할 수 있는 다양한 DB 옵션](https://aws.amazon.com/blogs/compute/understanding-database-options-for-your-serverless-web-applications/) 이 존재합니다. Module 3 에서는 이 중 가장 많이 활용되는 형태 중 하나인 관계형 데이터베이스를 기준으로 안전하게 DB 에 연결하고 커넥션 풀을 효과적으로 관리하기 위해 아래 아키텍처와 같이 AWS Secrets Manager 와 Amazon RDS Proxy 를 활용해보겠습니다. 
 
