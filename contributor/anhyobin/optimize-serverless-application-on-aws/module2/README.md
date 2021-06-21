@@ -131,7 +131,7 @@ def lambda_handler(event, context):
 | --- | --- | --- |
 | Your RDS Endpoint | admin | Passw0rd |
 
-> Module 2 에서는 가장 간편한 방법으로 Lambda 에서 RDS 에 연결하기 위해 DB 의 크리덴셜을 직접 코드에 입력하여 접속합니다. 하지만 이는 보안상 안전한 방법은 아닙니다. 실제 프로덕션 환경에는 [AWS Secrets Manager 등을 활용](https://aws.amazon.com/blogs/security/how-to-securely-provide-database-credentials-to-lambda-functions-by-using-aws-secrets-manager/)해 DB 크리덴셜 정보를 직접 코드에 입력하는 것이 더 안전합니다.
+> Module 2 에서는 가장 간편한 방법으로 Lambda 에서 RDS 에 연결하기 위해 DB 의 크리덴셜을 직접 코드에 입력하여 접속합니다. 하지만 이는 보안상 안전한 방법은 아닙니다. 실제 프로덕션 환경에는 [AWS Secrets Manager 등을 활용](https://aws.amazon.com/blogs/security/how-to-securely-provide-database-credentials-to-lambda-functions-by-using-aws-secrets-manager/)해 DB 크리덴셜 정보를 하드코딩하지 않는 방법이 더 안전합니다. 이 부분은 Module 3 에서 구현합니다.
 
 11. 변경을 완료했다면 [Deploy] 버튼을 클릭해 배포를 완료합니다.
 
