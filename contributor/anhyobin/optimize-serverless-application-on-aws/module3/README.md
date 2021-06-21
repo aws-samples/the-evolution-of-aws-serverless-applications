@@ -113,7 +113,7 @@ def lambda_handler(event, context):
     json_secret = json.loads(secret)
 
     db = pymysql.connect(
-        host = 'your rds proxy endpoint', 
+        host = 'YOUR RDS PROXY ENDPOINT', 
         user = json_secret['username'], 
         password = json_secret['password']
         )
