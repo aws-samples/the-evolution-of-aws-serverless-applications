@@ -18,19 +18,34 @@
 
 1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS Secretes Manager 서비스로 이동합니다.
 2. 화면의 [Store a new secret] 버튼을 클릭합니다.
-3. Select secret type 은 [Credential for RDS database] 옵션을 선택하고 Module 2 에서 생성했던 DB 크리덴셜 정보를 입력합니다. [User name] 에는 **admin** [Password] 에는 **Passw0rd** 를 입력합니다. 아래 Select which RDS database this secret will access 옵션에서는 이전에 생성한 **serverless-app-rds** 를 선택한 뒤 [Next] 버튼을 클릭합니다.
+3. Select secret type 은 [Credential for RDS database] 옵션을 선택하고 Module 2 에서 생성했던 DB 크리덴셜 정보를 입력합니다. [User name] 에는 `admin` [Password] 에는 `Passw0rd` 를 입력합니다. 아래 Select which RDS database this secret will access 옵션에서는 이전에 생성한 **serverless-app-rds** 를 선택한 뒤 [Next] 버튼을 클릭합니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/1.png"></img></div>
 
-4. [Secret name] 에는 **serverless-app-rds-secret** 을 입력하고 나머지는 기본 옵션을 유지한 채 [Next] 버튼을 클릭합니다.
+4. [Secret name] 에는 `serverless-app-rds-secret` 을 입력하고 나머지는 기본 옵션을 유지한 채 [Next] 버튼을 클릭합니다.
 5. [DB 크리덴셜을 자동으로 로테이션](https://aws.amazon.com/blogs/security/rotate-amazon-rds-database-credentials-automatically-with-aws-secrets-manager/) 할 수도 있습니다. 이번 실습에서는 이를 활용하지는 않습니다. [Next] 버튼을 클릭합니다.
 6. 설정 값을 검토한 뒤 하단의 [Store] 를 선택하여 DB 인증 정보 저장을 완료합니다.
 7. Secrets Manager 를 사용하면 기본적으로는 퍼블릭 통신을 통해 DB 크리덴셜을 가져오게 되지만 [VPC Endpoints](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints.html) 를 사용하면 프라이빗 엔드포인트를 통해 VPC 내의 리소스가 직접 액세스 할 수 있습니다. VPC Endpoints 설정을 위해 Amazon VPC 서비스로 이동합니다.
 8. VPC Endpoints 설정에는 보안 그룹이 필요합니다. 오늘 실습의 Secrets Manager 의 경우 Lambda 에서 접근할 수 있어야 합니다. 좌측의 [Security Group] 메뉴로 이동한 뒤 [Create security group] 버튼을 선택합니다.
-9. [Security group name] 에는 **secret-sg** 를 입력하고 [Description] 을 적은 뒤 [VPC] 는 앞서 생성한 **serverless-app** 을 선택합니다.
+9. [Security group name] 에는 `secret-sg` 를 입력하고 [Description] 을 적은 뒤 [VPC] 는 앞서 생성한 **serverless-app** 을 선택합니다.
 10. 하단의 Inbound rules 에서 [Add rule] 버튼을 클릭하여 인바운드 규칙을 추가합니다. [Type] 은 **HTTPS** 를 선택하고 [Source] 에는 앞서 생성한 lambda-sg 를 선택합니다. 아래 [Create security group] 을 선택하여 완료합니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/2.png"></img></div>
+
+11. VPC Endpoints 를 설정합니다. 좌측의 [Endpoints] 메뉴로 이동한 뒤 [Create Endpoint] 버튼을 선택합니다.
+12. [Service category] 는 **AWS services** 를 선택하고 아래의 [Service Name] 에 `com.amazonaws.ap-northeast-2.secretsmanager` 를 검색하여 선택합니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/3.png"></img></div> 
+
+13. 하단의 [VPC] 는 **serverless-app** 을 선택하고 아래 [Subnets] 에는 Secrets Manager 를 위해 생성한 **secret-subnet-a** 와 **secret-subnet-c** 를 선택합니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/4.png"></img></div>
+
+14. 아래 [Security group] 에는 **secret-sg** 를 선택해줍니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/5.png"></img></div>
+
+16. 여기까지 잘 설정했다면 [Create endpoint] 버튼을 클릭하여 VPC Endpoints 생성을 완료합니다.
 
 ////
 
