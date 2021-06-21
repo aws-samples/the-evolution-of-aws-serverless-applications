@@ -86,7 +86,15 @@
 이번 단계에서는 앞서 생성한 Lambda 함수가 구성한 RDS Proxy 를 활용해 RDS 에 접근하도록 수정합니다.
 
 1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS Lambda 서비스로 이동합니다.
+2. 이전에 생성한 **serverless-app-lambda** 를 선택하고 [Configuration] 탭의 [Permissions] 메뉴로 이동합니다. Lambda 함수에 설정한 IAM Role 이 보입니다. 클릭하여 IAM 페이지로 이동합니다. 
 
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/11.png"></img></div>
+
+3. RDS Proxy 에 연결하기 위해 Secrets Manager API 를 활용할 것입니다. [Attach policies] 메뉴를 선택하고 `SecretsManagerReadWrite` 권한을 찾아 선택한 뒤 [Attach policy] 버튼을 클릭하여 추가합니다. 다음과 같이 새로운 정책이 추가 됩니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/12.png"></img></div>
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/13.png"></img></div>
 
 ////
 
