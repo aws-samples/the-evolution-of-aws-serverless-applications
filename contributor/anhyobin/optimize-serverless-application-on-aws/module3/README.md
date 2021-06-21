@@ -50,7 +50,9 @@
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/5.png"></img></div>
 
-17. 여기까지 잘 설정했다면 [Create endpoint] 버튼을 클릭하여 VPC Endpoints 생성을 완료합니다.
+17. 여기까지 잘 설정했다면 [Create endpoint] 버튼을 클릭하여 VPC Endpoints 생성을 완료합니다. 잠시후 다음과 같이 Status 가 available 이 되면 다음으로 진행합니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/6.png"></img></div>
 
 ////
 
