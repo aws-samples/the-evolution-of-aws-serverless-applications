@@ -70,12 +70,12 @@ Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lamb
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/8.png"></img></div>
 
 10. 워크샵 환경에서는 Multi-AZ 배포를 할 필요는 없기 때문에 Availability & durability 의 [Multi-AZ deployment] 옵션은 **Do not create a standby instance** 를 체크합니다. 프로덕션 환경에서는 standby instance 옵션을 사용하는 것이 좋습니다.
-10. 아래 Connectivity 옵션에서 [Virtual private cloud (VPC)] 는 **serverless-app** 을 선택하고 [Subnet group] 은 **rds-subnet-group** 을 선택합니다.
-11. [VPC security group] 은 **Choose existing** 을 선택하고 [Existing VPC security groups] 에 앞서 생성한 **rds-sg** 를 추가로 선택해줍니다.
+11. 아래 Connectivity 옵션에서 [Virtual private cloud (VPC)] 는 **serverless-app** 을 선택하고 [Subnet group] 은 **rds-subnet-group** 을 선택합니다.
+12. [VPC security group] 은 **Choose existing** 을 선택하고 [Existing VPC security groups] 에 앞서 생성한 **rds-sg** 를 추가로 선택해줍니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/9.png"></img></div>
 
-12. 다른 옵션은 기본값을 유지한채 [Create database] 를 선택하여 RDS 생성을 완료합니다.
+13. 다른 옵션은 기본값을 유지한채 [Create database] 를 선택하여 RDS 생성을 완료합니다.
 
 ### Step 3-1. AWS Lambda 구성
 
@@ -132,6 +132,8 @@ def lambda_handler(event, context):
 | Your RDS Endpoint | admin | Passw0rd |
 
 > Module 2 에서는 가장 간편한 방법으로 Lambda 에서 RDS 에 연결하기 위해 DB 의 크리덴셜을 직접 코드에 입력하여 접속합니다. 하지만 이는 보안상 안전한 방법은 아닙니다. 실제 프로덕션 환경에는 [AWS Secrets Manager 등을 활용](https://aws.amazon.com/blogs/security/how-to-securely-provide-database-credentials-to-lambda-functions-by-using-aws-secrets-manager/)해 DB 크리덴셜 정보를 직접 코드에 입력하는 것이 더 안전합니다.
+
+11. 변경을 완료했다면 [Deploy] 버튼을 클릭해 배포를 완료합니다.
 
 ### Step 3-2. Lambda Layer 구성
 
