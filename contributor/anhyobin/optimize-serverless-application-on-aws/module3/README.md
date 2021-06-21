@@ -168,6 +168,16 @@ def get_secret():
             return decoded_binary_secret
 ```
 
+> Module 2 보다 코드가 길어졌지만 실제로 AWS Secrets Manager 를 활용하는 것을 제외한다면 pymysql.connect() 의 host 주소만 RDS Proxy 로 변경된 것을 알 수 있습니다. 이처럼 RDS Proxy 는 애플리케이션의 변경을 최소화하는 방식으로 충분히 활용이 가능합니다.
+
+5. 코드 상 15 라인의 pymysql.connect() 부분의 host 부분에 대한 변경이 필요합니다. 앞서 생성한 RDS Proxy 의 Proxy endpoints 중 [Tartget role] 이 **Read/write** 로 되어 있는 엔드포인트를 복사하여 Lambda 함수에 업데이트 합니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/14.png"></img></div>
+
+> Module 2 에서 구성할 때는 user, password 와 같은 DB 크리덴셜을 하드코딩 했습니다. 앞서 설명했 듯 이는 안전한 방법이 아니며 이번 실습과 같이 AWS Secrets Manager 에 이를 저장하고 API 등을 통해 이러한 정보를 가져와서 DB 에 연결하는 것이 안전합니다.
+
+6. 변경을 완료 했다면 [Deploy] 버튼을 클릭해 배포를 완료합니다.
+
 ////
 
 이 모듈에서는 Module 2.에서 생성한 API Gateway, Lambda, RDS를 기반으로 AWS Secrets Manager와 RDS Proxy 설정을 추가하는 과정입니다. 이 모듈을 추가함으로서 Lambda 기반 API application 서비스의 장점은 AWS Secrets Manager를 통하여 RDS의 보안 정보를 쉽게 관리할 수 있고, RDS Proxy를 설정함으로서 Connection pooling로 보다 효율적인 connection 관리로 API 의 성능을 향상 시킬 수 있습니다.
