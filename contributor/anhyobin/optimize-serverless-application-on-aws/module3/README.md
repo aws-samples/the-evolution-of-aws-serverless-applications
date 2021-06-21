@@ -12,7 +12,7 @@
 
 ### Step 1. AWS Secrets Manager 구성
 
-AWS Secrets Manager 를 사용하면 애플리케이션, 서비스, IT 리소스에 액세스할 때 필요한 보안 정보를 보하할 수 있습니다. 특히 DB 크리덴셜 뿐 아니라 API 키와 같은 보안 정보를 손쉽게 교체, 관리 및 검색하는게 가능합니다. 이를 사용하면 애플리케이션은 Secrets Manager API 를 호출하여 크리덴셜 정보를 읽으므로, 민감한 정보를 평문으로 하드코딩할 필요가 없는 보안상의 이점이 있습니다.
+[AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) 를 사용하면 애플리케이션, 서비스, IT 리소스에 액세스할 때 필요한 보안 정보를 보하할 수 있습니다. 특히 DB 크리덴셜 뿐 아니라 API 키와 같은 보안 정보를 손쉽게 교체, 관리 및 검색하는게 가능합니다. 이를 사용하면 애플리케이션은 Secrets Manager API 를 호출하여 크리덴셜 정보를 읽으므로, 민감한 정보를 평문으로 하드코딩할 필요가 없는 보안상의 이점이 있습니다.
 
 이번 단계에서는 앞서 생성한 Lambda 함수에 직접 하드코딩 되어있는 DB 크리덴셜 정보를 Secrets Manager API 를 호출하여 불러오는 구성을 수행합니다.
 
@@ -28,6 +28,8 @@ AWS Secrets Manager 를 사용하면 애플리케이션, 서비스, IT 리소스
 7. Secrets Manager 를 사용하면 기본적으로는 퍼블릭 통신을 통해 DB 크리덴셜을 가져오게 되지만 [VPC Endpoints](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints.html) 를 사용하면 아래와 같이 프라이빗 엔드포인트를 통해 VPC 내의 리소스가 직접 액세스 할 수 있습니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/secrets-manager-VPC-01.png"></img></div>
+
+8.
 
 ////
 
