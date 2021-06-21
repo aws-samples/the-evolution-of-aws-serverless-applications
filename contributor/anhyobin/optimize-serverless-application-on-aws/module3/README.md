@@ -54,6 +54,14 @@
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/6.png"></img></div>
 
+### Step 2. Amazon RDS Proxy 구성
+
+서버리스 애플리케이션에서 효과적으로 RDS 를 사용하는 것은 쉽지 않습니다. 서버리스 아키텍처를 기반으로 구축된 애플리케이션은 DB 에 다수의 커넥션을 만들어 max_connections 옵션을 초과하는 에러가 발생하거나 빠른 속도로 DB 커넥션을 열고 닫음으로 과도하게 메모리와 컴퓨팅 리소스를 소진하는 경우가 발생합니다. Amazon RDS Proxy 를 사용하면 애플리케이션과 DB 사이의 연결을 풀링하고 공유할 수 있기 때문에 이런 어려움을 극복할 수 있습니다. 또한 DB 장애조치 시에 새로운 DB 로 연결을 복구하는 시간 역시 최대 66% 단축할 수 있도록 구현되어 있습니다. [RDS Proxy 를 활용한 애플리케이션 가용성 향상](https://aws.amazon.com/blogs/database/improving-application-availability-with-amazon-rds-proxy/) 을 보면 보다 자세한 내용을 살펴볼 수 있습니다.
+
+이번 실습에는 개발 중인 서버리스 애플리케이션에서 관계형 데이터베이스 사용을 효율적으로 바꿀 고가용상 DB 프록시 서비스인 RDS Proxy 를 구성합니다.
+
+1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 Amazon RDS 서비스로 이동합니다.
+
 ////
 
 이 모듈에서는 Module 2.에서 생성한 API Gateway, Lambda, RDS를 기반으로 AWS Secrets Manager와 RDS Proxy 설정을 추가하는 과정입니다. 이 모듈을 추가함으로서 Lambda 기반 API application 서비스의 장점은 AWS Secrets Manager를 통하여 RDS의 보안 정보를 쉽게 관리할 수 있고, RDS Proxy를 설정함으로서 Connection pooling로 보다 효율적인 connection 관리로 API 의 성능을 향상 시킬 수 있습니다.
