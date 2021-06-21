@@ -70,15 +70,16 @@
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/8.png"></img></div>
 
-5. Connectivity 설정에서 
+5. Connectivity 설정에서 [Secrets Manager secret(s)] 에는 앞서 생성한 **serverless-app-rds-secret** 을 선택합니다.
+6. [Subnets] 에는 VPC 의 모든 서브넷이 선택되어 있습니다. RDS 에서 사용하는 **rds-subnet-a, rds-subnet-c** 를 확인하여 나머지는 제거합니다.
+7. [Additional connectivity configuration] 의 드롭다운 버튼을 클릭한 뒤 [Existing VPC security groups] 에는 **rds-sg** 를 선택합니다.
 
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/9.png"></img></div>
 
+8. 설정을 잘 했다면 하단의 [Create proxy] 버튼을 클릭하여 생성을 시작합니다. RDS Proxy 를 사용할 수 있게 되는 데는 몇 분 정도 소요됩니다.
+9. 생성이 완료된 후 해당 RDS Proxy 를 선택해보면 다음과 같이 [Proxy endpoints] 를 확인할 수 있습니다.
 
-
-
-
-
-
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/10.png"></img></div>
 
 
 
