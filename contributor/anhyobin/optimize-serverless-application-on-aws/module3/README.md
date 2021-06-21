@@ -81,7 +81,11 @@
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/10.png"></img></div>
 
+### Step 3. AWS Lambda 함수 코드 변경
 
+이번 단계에서는 앞서 생성한 Lambda 함수가 구성한 RDS Proxy 를 활용해 RDS 에 접근하도록 수정합니다.
+
+1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS Lambda 서비스로 이동합니다.
 
 
 ////
