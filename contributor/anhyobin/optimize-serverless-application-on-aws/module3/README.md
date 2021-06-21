@@ -178,6 +178,23 @@ def get_secret():
 
 6. 변경을 완료 했다면 [Deploy] 버튼을 클릭해 배포를 완료합니다.
 
+### Step 3. 테스트
+
+이번 모듈을 마치기에 앞서 구성한 AWS Secrets Manager 와 Amazon RDS Proxy 가 제대로 동작하는지 테스트를 해보겠습니다. Lambda 콘솔에서 바로 Test 를 수행할 수 있지만 Module 2 에서 생성한 Amazon API Gateway 의 Invoke URL 을 활용해 테스트 하겠습니다.
+
+1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 Amazon API Gateway 서비스로 이동합니다.
+2. 앞서 생성한 **serverless-app-api** 를 선택하고 좌측의 [Stages] 메뉴로 이동한 뒤 **dev** 스테이지를 선택합니다.
+3. 화면에 표시된 [Invoke URL] 를 복사하여 브라우저에서 연결하거나 터미널에서 호출해봅니다. Module 2 에서 수행하던 것과 유사한 결과값이 나오는 것을 확인할 수 있습니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/15.png"></img></div>
+
+```
+$ curl YOUR API Gateway Invoke URL
+{"statusCode": 200, "body": "\"2021-06-21T12:02:55\""}
+```
+
+서버리스 애플리케이션에서 RDS 를 보다 안전하고 효율적으로 활용하는 방법을 알아봤습니다. [Module 4. AWS Lambda 부하테스트]() 로 이동합니다.
+
 ////
 
 이 모듈에서는 Module 2.에서 생성한 API Gateway, Lambda, RDS를 기반으로 AWS Secrets Manager와 RDS Proxy 설정을 추가하는 과정입니다. 이 모듈을 추가함으로서 Lambda 기반 API application 서비스의 장점은 AWS Secrets Manager를 통하여 RDS의 보안 정보를 쉽게 관리할 수 있고, RDS Proxy를 설정함으로서 Connection pooling로 보다 효율적인 connection 관리로 API 의 성능을 향상 시킬 수 있습니다.
