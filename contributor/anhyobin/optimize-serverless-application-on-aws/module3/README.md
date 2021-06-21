@@ -21,7 +21,9 @@
 4. [Secret name] 에는 **serverless-app-rds-secret** 을 입력하고 나머지는 기본 옵션을 유지한 채 [Next] 버튼을 클릭합니다.
 5. [DB 크리덴셜을 자동으로 로테이션](https://aws.amazon.com/blogs/security/rotate-amazon-rds-database-credentials-automatically-with-aws-secrets-manager/) 할 수도 있습니다. 이번 실습에서는 이를 활용하지는 않습니다. [Next] 버튼을 클릭합니다.
 6. 설정 값을 검토한 뒤 하단의 [Store] 를 선택하여 DB 인증 정보 저장을 완료합니다.
+7. Secrets Manager 를 사용하면 기본적으로는 퍼블릭 통신을 통해 DB 크리덴셜을 가져오게 되지만 [VPC Endpoints](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints.html) 를 사용하면 아래와 같이 프라이빗 엔드포인트를 통해 VPC 내의 리소스가 직접 액세스 할 수 있습니다.
 
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/secrets-manager-VPC-01.png"></img></div>
 
 ////
 
