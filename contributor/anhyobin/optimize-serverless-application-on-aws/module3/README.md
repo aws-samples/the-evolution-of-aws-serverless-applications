@@ -61,6 +61,27 @@
 이번 실습에는 개발 중인 서버리스 애플리케이션에서 관계형 데이터베이스 사용을 효율적으로 바꿀 고가용상 DB 프록시 서비스인 RDS Proxy 를 구성합니다.
 
 1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 Amazon RDS 서비스로 이동합니다.
+2. 좌측의 [Proxies] 메뉴를 선택한 뒤 [Create proxy] 버튼을 클릭합니다.
+3. [Proxy identifier] 에는 `serverless-app-rds-proxy` 를 입력하고 [Engine compatibility] 는 **MySQL** 을 선택합니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/7.png"></img></div>
+
+4. 하단의 Target group configuration 에서 [Database] 는 Module 2. 에서 생성한 **serverless-app-rds** 를 선택합니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/8.png"></img></div>
+
+5. Connectivity 설정에서 
+
+
+
+
+
+
+
+
+
+
+
 
 ////
 
