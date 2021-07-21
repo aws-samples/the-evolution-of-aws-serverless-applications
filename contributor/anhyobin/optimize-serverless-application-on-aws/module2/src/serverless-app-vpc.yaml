@@ -125,5 +125,5 @@ Resources:
 
 Outputs:
   VPC:
-    Description: Created VPC
+    Description: serverless-app-vpc
     Value: !Ref VPC
