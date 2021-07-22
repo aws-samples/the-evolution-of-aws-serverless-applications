@@ -11,10 +11,19 @@
 
 ## 모듈
 
-1. [나의 첫 AWS Lambda](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/README.md) : AWS Lambda 를 사용해본 적 없는 분들을 위한 기초 과정입니다. 이미 Lambda 에 익숙하다면 진행하지 않아도 괜찮습니다. 다음 아키텍처와 같이 Lambda 를 활용해 단순한 자동화 프로세스를 구축해봅니다. <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/img/module1_architecture.jpg"></img></div> 
-2. [본격 REST API 기반 서버리스 애플리케이션 개발](https://github.com/aws-samples/aws-games-sa-kr/tree/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/README.md) : 본격적으로 AWS Lambda 를 활용해 서버리스 애플리케이션을 만들어 봅니다. 가장 많이 활용되는 형태인 Amazon API Gateway 의 REST API 구축에 AWS Lambda 를 활용하는 방법을 알아봅니다. <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/module2_architecture.jpg"></img></div> 
-3. [서버리스 애플리케이션의 DB 사용 경험 개선](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/README.md) : 앞서 Module 2 에서 개발한 REST API 기반 서버리스 애플리케이션의 DB 사용 경험을 개선합니다. Amazon RDS Proxy 를 통해 DB 커넥션을 효과적으로 관리하고 AWS Secrets Manager 를 통해 보안을 강화해봅니다. <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/module3_architecture.jpg"></img></div> 
-4. TBU
+1. [나의 첫 AWS Lambda](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/README.md) : AWS Lambda 를 사용해본 적 없는 분들을 위한 기초 과정입니다. 이미 Lambda 에 익숙하다면 진행하지 않아도 괜찮습니다. 다음 아키텍처와 같이 Lambda 를 활용해 단순한 자동화 프로세스를 구축해봅니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module1/img/module1_architecture.jpg"></img></div> 
+
+2. [본격 REST API 기반 서버리스 애플리케이션 개발](https://github.com/aws-samples/aws-games-sa-kr/tree/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/README.md) : 본격적으로 AWS Lambda 를 활용해 서버리스 애플리케이션을 만들어 봅니다. 가장 많이 활용되는 형태인 Amazon API Gateway 의 REST API 구축에 AWS Lambda 를 활용하는 방법을 알아봅니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/module2_architecture.jpg"></img></div> 
+
+3. [서버리스 애플리케이션의 DB 사용 경험 개선](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/README.md) : 앞서 Module 2 에서 개발한 REST API 기반 서버리스 애플리케이션의 DB 사용 경험을 개선합니다. Amazon RDS Proxy 를 통해 DB 커넥션을 효과적으로 관리하고 AWS Secrets Manager 를 통해 보안을 강화해봅니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/module3_architecture.jpg"></img></div> 
+
+4. [서버리스 애플리케이션 부하테스트 및 코드 최적화](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/README.md) : Moduel 2, 3 에서 개발한 서버리스 애플리케이션에 부하테스트를 통해 AWS Lambda 의 Scaling 동작을 확인하고, Provisioned Concurrency 설정으로 cold start 를 줄여 실행 시간을 최적화 해봅니다. 나아가 Lambda 의 코드최적화를 통해 실행 시간을 단축해 전반적인 성능을 개선하는 방법에 관해 알아봅니다.
 
 ## 참고 자료
 
