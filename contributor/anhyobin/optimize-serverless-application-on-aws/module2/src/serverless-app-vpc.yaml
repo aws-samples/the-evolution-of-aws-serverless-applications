@@ -9,7 +9,7 @@ Resources:
       EnableDnsHostnames: true
       Tags:
         - Key: Name
-          Value: serverless-app-vpc
+          Value: serverless-app
   
   InternetGateway:
     Type: AWS::EC2::InternetGateway
