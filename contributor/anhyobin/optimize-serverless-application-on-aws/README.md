@@ -23,7 +23,7 @@
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/module3_architecture.jpg"></img></div> 
 
-4. [서버리스 애플리케이션 부하테스트 및 코드 최적화](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/README.md) : Moduel 2, 3 에서 개발한 서버리스 애플리케이션에 부하테스트를 통해 AWS Lambda 의 Scaling 동작을 확인하고, Provisioned Concurrency 설정으로 cold start 를 줄여 실행 시간을 최적화 해봅니다. 나아가 Lambda 의 코드최적화를 통해 실행 시간을 단축해 전반적인 성능을 개선하는 방법에 관해 알아봅니다.
+4. [서버리스 애플리케이션 부하테스트 및 코드 최적화](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/README.md) : Moduel 2, 3 에서 개발한 서버리스 애플리케이션을 최적화하고 테스트합니다. 우선 AWS Lambda 의 코드 최적화를 통해 실행 시간을 단축하고 성능을 개선해보고, 부하테스트를 통해 Lambda 의 Scaling 동작을 확인하고, Provisioned Concurrency 설정으로 Cold Start 를 줄여 실행 시간을 최적화 해봅니다.
 
 ## 참고 자료
 
