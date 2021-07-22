@@ -8,16 +8,16 @@ Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lamb
 
 ### Step 1. 서버리스 애플리케이션에서 사용할 Amazon VPC 생성
 
-이번 실습에서 구성하는 리소스들을 위한 네트워크 환경을 먼저 구성합니다. 데이터베이스를 Amazon DynamoDB 와 같은 리전 서비스를 활용한다면 필요없는 단계겠지만 오늘 실습에는 Amazon RDS 를 활용하기 때문에 이를 위한 VPC 구성이 우선 되어야 합니다.
+이번 실습에서 구성하는 리소스들을 위한 네트워크 환경을 먼저 구성합니다. 데이터베이스를 Amazon DynamoDB 와 같은 리전 서비스를 활용한다면 필요없는 단계겠지만 오늘 실습에는 Amazon RDS 를 활용하기 때문에 이를 위한 VPC 구성이 우선 되어야 합니다. VPC 와 실습에 사용할 서브넷 구성은 CloudFormation 을 통해 수행합니다.
 
-1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 Amazon VPC 서비스로 이동합니다. 리전은 서울(ap-northeast-2)을 사용합니다.
-2. 화면 좌측의 [Your VPCs] 로 이동한 뒤 상단의 [Create VPC] 버튼을 클릭하여 VPC 생성을 시작합니다.
-3. [Name tag - optional] 에는 **serverless-app** 을 입력하고 [IPv4 CIDR block] 에는 **10.0.0.0/16** 을 입력한 뒤 [Create VPC] 버튼을 클릭하여 생성을 완료합니다.
+1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS CloudFormation 서비스로 이동합니다. 리전은 서울(ap-northeast-2)을 사용합니다.
+2. 화면의 [Create stack] 버튼을 클릭하여 CloudFormation 스택 생성을 시작합니다.
+3. Template source 는 [Upload a template file] 을 선택하고 [Choose file] 을 클릭한 뒤 다음 [serverless-app-vpc.yaml](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/src/serverless-app-vpc.yaml) 템플릿을 다운받아 업로드합니다. [Next] 를 클릭해 다음으로 진행합니다.
 
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/1.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/1-1.png"></img></div>
 
-4. VPC 에 서브넷을 가용 영역별로 2개씩 총 6개를 생성합니다. 좌측의 [Subnets] 메뉴로 이동한 뒤 [Create subnet] 버튼을 선택합니다.
-5. VPC ID 에는 앞서 생성한 **serverless-app** VPC 를 선택한 뒤 아래와 같이 4개의 서브넷을 생성합니다. 하나씩 입력한 뒤 아래 [Add new subnet] 버튼을 클릭하여 한번에 추가할 수 있습니다.
+4. [Stack name] 에는 ```serverless-app-vpc``` 를 입력하고 [Next] 를 클릭합니다. 다른 옵션은 모두 기본값을 유지한채 마지막 리뷰 화면에서 [Create stack] 버튼을 선택해 스택생성을 시작합니다.
+5. 잠시 후 다음과 같이 스택 생성이 완료되면 VPC 와 아래와 같은 7개의 서브넷이 생성되고 기본적인 라우팅도 설정됩니다.
 
 | Subnet name | Availability Zone | IPv4 CIDR block |
 | --- | --- | --- |
@@ -27,20 +27,16 @@ Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lamb
 | rds-subnet-c | ap-northeast-2c | 10.0.20.0/24 |
 | secret-subnet-a | ap-northeast-2a | 10.0.100.0/24 |
 | secret-subnet-c | ap-northeast-2c | 10.0.200.0/24 |
+| cloud9-subnet-a | ap-northeast-2a | 10.0.0.0/24 |
 
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/2.png"></img></div>
-
-6. 다음과 같이 6개의 서브넷을 생성했다면 다음으로 진행합니다.
-
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/3.png"></img></div>
-
+6. 기본적인 VPC 생성은 완료되었습니다. [AWS 콘솔](https://console.aws.amazon.com/) 에서 Amazon VPC 서비스로 이동합니다.
 7. RDS 와 Lambda 에서 각각 사용할 보안 그룹을 생성합니다. RDS 의 경우 이 후 생성할 Lambda 와 RDS Proxy 에서 접근이 허용되도록 구성할 것입니다.
 8. 좌측의 [Security Groups] 메뉴로 이동한 뒤 [Create security group] 버튼을 클릭합니다.
-9. 우선 Lambda 에서 사용할 보안 그룹을 생성합니다. [Security group name] 에는 **lambda-sg** 를 입력하고 [Description] 을 적은 뒤 [VPC] 는 앞서 생성한 **serverless-app** 을 선택합니다. Lambda 의 경우 별도의 인바운드 규칙이 필요하지 않습니다. 하단의 [Create security group] 버튼을 클릭하여 완료합니다.
+9. 우선 Lambda 에서 사용할 보안 그룹을 생성합니다. [Security group name] 에는 ```lambda-sg``` 를 입력하고 [Description] 을 적은 뒤 [VPC] 는 CloudFormation 을 통해 생성한 **serverless-app** 을 선택합니다. Lambda 의 경우 별도의 인바운드 규칙이 필요하지 않습니다. 하단의 [Create security group] 버튼을 클릭하여 완료합니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/4.png"></img></div>
 
-10. 이어서 RDS 에서 사용할 보안 그룹을 생성합니다. 앞서와 동일하게 보안 그룹 생성 메뉴로 이동한 뒤 [Security group name] 에는 **rds-sg** 를 입력하고 [Description] 을 적은 뒤 [VPC] 는 동일하게 **serverless-app** 을 선택합니다.
+10. 이어서 RDS 에서 사용할 보안 그룹을 생성합니다. 앞서와 동일하게 보안 그룹 생성 메뉴로 이동한 뒤 [Security group name] 에는 ```rds-sg``` 를 입력하고 [Description] 을 적은 뒤 [VPC] 는 동일하게 **serverless-app** 을 선택합니다.
 11. 하단의 Inbound rules 에서 [Add rule] 버튼을 클릭하여 인바운드 규칙을 추가합니다. [Type] 은 **MYSQL/Aurora** 를 선택하고 [Source] 에는 앞서 생성한 **lambda-sg** 를 선택합니다. 아래 [Create security group] 을 선택하여 완료합니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2/img/5.png"></img></div>
@@ -53,7 +49,7 @@ Module 2 에서는 아래 아키텍처와 같이 Amazon API Gateway 와 AWS Lamb
 
 1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 Amazon RDS 서비스로 이동합니다.
 2. 좌측의 [Subnet groups] 메뉴로 이동한 뒤 [Create DB Subnet Group] 을 선택합니다.
-3. [Name] 에는 **rds-subnet-group** 을 입력하고 [Description] 을 입력한 뒤 [VPC] 는 **serverless-app** 을 선택합니다.
+3. [Name] 에는 ```rds-subnet-group``` 을 입력하고 [Description] 을 입력한 뒤 [VPC] 는 **serverless-app** 을 선택합니다.
 4. 하단의 Add subnets 의 [Availability Zones] 에는 **ap-northeast-2a** 와 **ap-northeast-2c** 두가지를 선택합니다.
 5. [Subnets] 에는 앞서 데이터베이스용으로 만든 서브넷 두 가지 **10.0.10.0/24** 와 **10.0.20.0/24** 를 선택하고 [Create] 를 클릭하여 완료합니다.
 
