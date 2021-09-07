@@ -103,17 +103,36 @@ import json
 import pymysql
 import boto3
 import base64
+import time
 from botocore.exceptions import ClientError
 
 secret_name = "serverless-app-rds-secret"
 region_name = "ap-northeast-2"
+
+def get_secret():    
+    session = boto3.session.Session()
+    client = session.client(
+        service_name = 'secretsmanager',
+        region_name = region_name
+    )
+
+    get_secret_value_response = client.get_secret_value(
+        SecretId=secret_name
+    )
+
+    if 'SecretString' in get_secret_value_response:
+        secret = get_secret_value_response['SecretString']
+        return secret
+    else:
+        decoded_binary_secret = base64.b64decode(get_secret_value_response['SecretBinary'])
+        return decoded_binary_secret
 
 def lambda_handler(event, context):
     secret = get_secret()
     json_secret = json.loads(secret)
 
     db = pymysql.connect(
-        host = 'YOUR RDS PROXY ENDPOINT', 
+        host = 'serverless-app-rds-proxy.proxy-cifqx4wzaw0e.ap-northeast-2.rds.amazonaws.com', 
         user = json_secret['username'], 
         password = json_secret['password']
         )
@@ -124,48 +143,11 @@ def lambda_handler(event, context):
     result = cursor.fetchone()
 
     db.commit()
-    db.close()
     
     return {
         'statusCode': 200,
         'body': json.dumps(result[0].isoformat())
     }
-
-
-def get_secret():    
-    # Create a Secrets Manager client
-    session = boto3.session.Session()
-    client = session.client(
-        service_name = 'secretsmanager',
-        region_name = region_name
-    )
-
-    # In this sample we only handle the specific exceptions for the 'GetSecretValue' API.
-    # See https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
-    # We rethrow the exception by default.
-
-    try:
-        get_secret_value_response = client.get_secret_value(
-            SecretId=secret_name
-        )
-    except ClientError as e:
-        if e.response['Error']['Code'] == 'DecryptionFailureException':
-            raise e
-        elif e.response['Error']['Code'] == 'InternalServiceErrorException':
-            raise e
-        elif e.response['Error']['Code'] == 'InvalidParameterException':
-            raise e
-        elif e.response['Error']['Code'] == 'InvalidRequestException':
-            raise e
-        elif e.response['Error']['Code'] == 'ResourceNotFoundException':
-            raise e
-    else:
-        if 'SecretString' in get_secret_value_response:
-            secret = get_secret_value_response['SecretString']
-            return secret
-        else:
-            decoded_binary_secret = base64.b64decode(get_secret_value_response['SecretBinary'])
-            return decoded_binary_secret
 ```
 
 > Module 2 보다 코드가 길어졌지만 실제로 AWS Secrets Manager 를 활용하는 것을 제외한다면 pymysql.connect() 의 host 주소만 RDS Proxy 로 변경된 것을 알 수 있습니다. 이처럼 RDS Proxy 는 애플리케이션의 변경을 최소화하는 방식으로 충분히 활용이 가능합니다.
