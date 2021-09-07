@@ -175,4 +175,4 @@ $ curl YOUR API Gateway Invoke URL
 {"statusCode": 200, "body": "\"2021-06-21T12:02:55\""}
 ```
 
-서버리스 애플리케이션에서 RDS 를 보다 안전하고 효율적으로 활용하는 방법을 알아봤습니다. [Module 4. AWS Lambda 부하테스트]() 로 이동합니다.
+서버리스 애플리케이션에서 RDS 를 보다 안전하고 효율적으로 활용하는 방법을 알아봤습니다. [Module 4. 서버리스 애플리케이션 코드 최적화 및 부하테스트](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/README.md) 로 이동합니다.
