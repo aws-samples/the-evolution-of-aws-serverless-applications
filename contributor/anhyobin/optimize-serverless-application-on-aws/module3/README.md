@@ -132,7 +132,7 @@ def lambda_handler(event, context):
     json_secret = json.loads(secret)
 
     db = pymysql.connect(
-        host = 'serverless-app-rds-proxy.proxy-cifqx4wzaw0e.ap-northeast-2.rds.amazonaws.com', 
+        host = 'YOUR RDS PROXY ENDPOINT',
         user = json_secret['username'], 
         password = json_secret['password']
         )
@@ -152,7 +152,7 @@ def lambda_handler(event, context):
 
 > Module 2 보다 코드가 길어졌지만 실제로 AWS Secrets Manager 를 활용하는 것을 제외한다면 pymysql.connect() 의 host 주소만 RDS Proxy 로 변경된 것을 알 수 있습니다. 이처럼 RDS Proxy 는 애플리케이션의 변경을 최소화하는 방식으로 충분히 활용이 가능합니다.
 
-5. 코드 상 15 라인의 pymysql.connect() 부분의 host 부분에 대한 변경이 필요합니다. 앞서 생성한 RDS Proxy 의 Proxy endpoints 중 [Tartget role] 이 **Read/write** 로 되어 있는 엔드포인트를 복사하여 Lambda 함수에 업데이트 합니다.
+5. 코드 상 33 라인의 pymysql.connect() 부분의 host 부분에 대한 변경이 필요합니다. 앞서 생성한 RDS Proxy 의 Proxy endpoints 중 [Tartget role] 이 **Read/write** 로 되어 있는 엔드포인트를 복사하여 Lambda 함수에 업데이트 합니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module3/img/14.png"></img></div>
 
