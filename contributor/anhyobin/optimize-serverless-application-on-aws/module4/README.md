@@ -8,3 +8,8 @@ Lambda 는 동시 실행 한도보다 먼저 초기 트래픽 버스트의 경�
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/features-scaling.png"></img></div>
 
 Module 4 에서는 [AWS Lambda 모범 사례](https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html) 중 일부를 적용하여 성능을 향상 시키는 방법을 알아보고 오픈 소스 부하테스트 도구인 [Locust](https://locust.io/) 를 활용해 Lambda 스케일링에 관해 알아보겠습니다.
+
+1. AWS Cloud9 에 Locust 구성
+2. 1차 부하 테스트
+3. AWS Lambda 코드 최적화
+4. 2차 부하 테스트 및 결과 
