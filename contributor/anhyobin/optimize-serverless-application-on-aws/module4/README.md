@@ -117,7 +117,7 @@ Lambda 함수를 최적화 하기 전 현재 구성한 환경에서 어떻게 �
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/11.png"></img></div>
 
-### Lambda 코드 최적화
+### Step 3. Lambda 코드 최적화
 
 15. 1차 부하 테스트
 16. AWS Lambda 코드 최적화
