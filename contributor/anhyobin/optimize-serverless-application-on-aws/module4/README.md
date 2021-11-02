@@ -7,12 +7,12 @@ Lambda 는 동시 실행 한도보다 먼저 초기 트래픽 버스트의 경�
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/features-scaling.png"></img></div>
 
-Module 4 에서는 [AWS Lambda 모범 사례](https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html) 중 일부를 적용하여 성능을 향상 시키는 방법을 알아보고 오픈 소스 부하테스트 도구인 [Locust](https://locust.io/) 를 활용해 Lambda 스케일링에 관해 알아보겠습니다.
+Module 4 에서는 [AWS Lambda 모범 사례](https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html) 중 일부를 적용하여 성능을 향상 시키는 방법을 알아보고 오픈 소스 부하 테스트 도구인 [Locust](https://locust.io/) 를 활용해 Lambda 스케일링에 관해 알아보겠습니다.
 
-### Step 1. AWS Cloud9 에 부하테스트 도구인 Locust 구성
-서비스 런칭 전에 사용할 수 있는 부하테스트 도구는 [JMeter](http://jmeter.apache.org/), [ApacheBench](https://httpd.apache.org/docs/2.4/programs/ab.html), [Vegeta](https://github.com/tsenart/vegeta) 등으로 굉장히 다양합니다. 또한 AWS 에서는 [Distributed Load Testing on AWS](https://aws.amazon.com/solutions/implementations/distributed-load-testing-on-aws/) 라는 솔루션을 제공하고 있으며 이를 통해 애플리케이션의 스케일과 안정성 등에 대해 테스트를 수행할 수 있습니다.
+### Step 1. AWS Cloud9 에 부하 테스트 도구인 Locust 구성
+서비스 런칭 전에 사용할 수 있는 부하 테스트 도구는 [JMeter](http://jmeter.apache.org/), [ApacheBench](https://httpd.apache.org/docs/2.4/programs/ab.html), [Vegeta](https://github.com/tsenart/vegeta) 등으로 굉장히 다양합니다. 또한 AWS 에서는 [Distributed Load Testing on AWS](https://aws.amazon.com/solutions/implementations/distributed-load-testing-on-aws/) 라는 솔루션을 제공하고 있으며 이를 통해 애플리케이션의 스케일과 안정성 등에 대해 테스트를 수행할 수 있습니다.
 
-이번 단계에서는 오픈 소스 부하테스트 도구인 [Locust](https://locust.io/) 를 AWS Cloud9 에 설치해 간단한 Python 코드로 손쉽게 부하테스트를 수행해보겠습니다. 이를 통해 지금까지 구성한 서버리스 애플리케이션을 테스트하고 스케일링에 관해 알아봅니다.
+이번 단계에서는 오픈 소스 부하 테스트 도구인 [Locust](https://locust.io/) 를 AWS Cloud9 에 설치해 간단한 Python 코드로 손쉽게 부하 테스트를 수행해보겠습니다. 이를 통해 지금까지 구성한 서버리스 애플리케이션을 테스트하고 스케일링에 관해 알아봅니다.
 
 1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS Cloud9 서비스로 이동합니다.
 2. 화면의 [Create environment] 버튼을 클릭합니다.
@@ -38,14 +38,17 @@ Module 4 에서는 [AWS Lambda 모범 사례](https://docs.aws.amazon.com/lambda
 $ pip3 install locust
 ```
 
-9. 아래 명령어를 통해 버전을 확인합니다.
+9. 아래 명령어를 통해 설치를 확인합니다.
 
 ```
 $ locust -V
 ```
 
 10. 설치를 확인했다면 테스트를 수행합니다. 이를 위해 테스트를 위한 locustfile 을 작성합니다. 좌측 파일 탐색기의 Locust 폴더에서 우 클릭 후 [New File] 옵션을 선택하고 파일명은 ```locustfile.py``` 를 입력합니다.
-11. 생성한 locustfile.py 를 열고 아래의 테스트 스크립트를 붙여넣습니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/4.png"></img></div>
+
+11. 생성한 locustfile.py 를 열고 아래의 테스트 스크립트를 붙여넣은 뒤 상단 메뉴 [File] 의 [Save] 옵션을 선택하여 저장합니다.
 
 ```Python
 import time
@@ -60,6 +63,28 @@ class QuickstartUser(HttpUser):
 
 > 오늘 구성한 환경에는 단순히 GET 을 통한 테스트만을 진행합니다. 실제 운영 환경에서는 [Writing a locustfile](https://docs.locust.io/en/stable/writing-a-locustfile.html) 을 참고하여 필요한 테스트 시나리오를 작성할 수 있습니다.
 
-2. 1차 부하 테스트
-3. AWS Lambda 코드 최적화
-4. 2차 부하 테스트 및 결과 
+12. 터미널로 돌아와서 다음 명령어를 입력하여 실행합니다.
+
+```
+$ locust
+```
+
+13. 부하는 Locust 의 web interface 를 통해 손쉽게 할 수 있습니다. 브라우저의 새 탭을 열고 [AWS 콘솔](https://console.aws.amazon.com/) 에서 Amazon EC2 서비스로 이동합니다.
+14. aws-cloud9-Locust 라는 이름으로 실행 중인 인스턴스를 선택하고 하단 메뉴의 [Security] 탭을 선택합니다. 아래 Security groups 을 보면 22번 포트에 대해서만 Inbound 가 허용된 것을 확인할 수 있습니다. 보안 그룹을 선택하여 수정 페이지로 이동합니다.
+15. Inbound rules 메뉴 하단에서 [Edit inbound rules] 메뉴를 선택하고 [Add rule] 버튼을 클릭합니다.
+16. Type 은 [Custom TCP] 를 선택하고 Port range 에는 ```8089``` 를 입력합니다. Source 는 [Anywhere-IPv4] 를 선택한 뒤 [Save rules] 버튼을 클릭하여 완료합니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/5.png"></img></div>
+
+17. 좌측의 [Instaces] 메뉴로 다시 이동한 뒤 aws-cloud9-Locust 인스턴스의 Public IP 를 복사합니다.
+18. 브라우저의 새 탭을 연 뒤 http://<Public IP>:8089 를 입력하여 Locust web interface 에 접속합니다. 부하 테스트를 위한 Locust 구성을 완료했습니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/6.png"></img></div>
+
+    ![6](https://user-images.githubusercontent.com/76983889/139796396-c7d72460-d383-4044-a209-9dac9c6347c8.png)
+
+### Step 2. 1차 부하 테스트
+
+15. 1차 부하 테스트
+16. AWS Lambda 코드 최적화
+17. 2차 부하 테스트 및 결과 
