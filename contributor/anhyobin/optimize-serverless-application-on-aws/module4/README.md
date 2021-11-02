@@ -28,7 +28,7 @@ Module 4 에서는 [AWS Lambda 모범 사례](https://docs.aws.amazon.com/lambda
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/2.png"></img></div>
 
 6. 하단의 [Next step] 을 선택하고 [Create environment] 를 선택하여 Cloud9 생성을 완료합니다. 생성에는 시간이 소요되며 생성이 완료되면 바로 IDE 환경에 접속하게 됩니다.
-7. 초기 화면의 Welcome 페이지를 닫고 + 버튼을 클릭한 뒤 [New Terminal] 옵션을 선택합니다.
+7. 초기 화면의 Welcome 페이지를 닫고 + 버튼을 클릭한 뒤 [New Terminal] 옵션을 선택합니다. 혹은 하단의 터미널 창에서 수행해도 무방합니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/3.png"></img></div>
 
