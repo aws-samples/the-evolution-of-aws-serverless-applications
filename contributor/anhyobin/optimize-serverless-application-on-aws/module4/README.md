@@ -119,6 +119,25 @@ Lambda 함수를 최적화 하기 전 현재 구성한 환경에서 어떻게 �
 
 ### Step 3. Lambda 코드 최적화
 
+앞 서 Step 2 에서 경험한 것과 같이 발생하는 Lambda 의 스로틀링을 회피하는 방법은 크게 두 가지가 있습니다. 첫 번째는 [Lambda provisioned concurrency](https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html) 를 통해 지정한 갯수 만큼의 실행 환경을 구성해두는 것입니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/features-scaling-provisioned.png"></img></div>
+
+두 번째는 Module 4 가장 앞에서 설명한 것과 같이 동시성의 최소화를 위해 Lambda 함수의 실행 시간을 최적화 하는 것입니다. 이것은 [Lambda 의 모범 사례](https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html) 중 하나로 실행 시간은 비용과도 밀접한 연관이 있기 때문에 Lambda 를 활용하신다면 필수로 적용해야 합니다.
+
+1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS Lambda 서비스로 이동합니다.
+2. serverless-app-lambda 함수를 선택하여 코드를 살펴보겠습니다. 앞서 Module 1 에서 모든 Lambda 함수에는 언어와 관계 없이 [Handler](https://docs.aws.amazon.com/lambda/latest/dg/python-handler.html) 가 포함 되어 있고 이는 함수의 호출 마다 실행된다고 설명드렸습니다.
+3. 저희가 사용 중인 Lambda 함수는 29라인의 ```Python def lambda_handler(event, context)``` 내에서 get_secret() 을 통해 DB 크리덴셜 정보를 읽고 DB 와 연결을 맺는 구조로 되어 있습니다. 이럴 경우
+
+```Python
+def lambda_handler(event, context):
+    get_secret()
+    pymysql.connect()
+    
+    execute("select now()")
+```
+
+
 15. 1차 부하 테스트
 16. AWS Lambda 코드 최적화
 17. 2차 부하 테스트 및 결과 
