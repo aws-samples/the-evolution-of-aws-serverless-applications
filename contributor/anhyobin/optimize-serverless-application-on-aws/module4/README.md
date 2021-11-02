@@ -127,16 +127,119 @@ Lambda 함수를 최적화 하기 전 현재 구성한 환경에서 어떻게 �
 
 1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS Lambda 서비스로 이동합니다.
 2. serverless-app-lambda 함수를 선택하여 코드를 살펴보겠습니다. 앞서 Module 1 에서 모든 Lambda 함수에는 언어와 관계 없이 [Handler](https://docs.aws.amazon.com/lambda/latest/dg/python-handler.html) 가 포함 되어 있고 이는 함수의 호출 마다 실행된다고 설명드렸습니다.
-3. 저희가 사용 중인 Lambda 함수는 29라인의 ```Python def lambda_handler(event, context)``` 내에서 get_secret() 을 통해 DB 크리덴셜 정보를 읽고 DB 와 연결을 맺는 구조로 되어 있습니다. 이럴 경우
+3. 저희가 사용 중인 Lambda 함수는 lambda_handler() 내에서 get_secret() 을 통해 DB 크리덴셜 정보를 읽고 DB 와 연결을 맺는 구조로 되어 있습니다. 이는 Lambda 가 호출될 때마다 고정된 값인 DB 크리덴셜을 읽고 새롭게 DB 와 연결하기 때문에 비효율적인 구조입니다.
 
 ```Python
 def lambda_handler(event, context):
     get_secret()
     pymysql.connect()
-    
+
     execute("select now()")
+
+    db.commit()
+    
+    return
+```
+> 단순하게 살펴보면 코드는 위의 구조와 같고 get_secret() 과 pymysql.connect() 는 최초 실행 때만 수행해도 무방해 보입니다.
+
+4. 이를 최적화 하는 방법은 단순합니다. 바로 실행 환경의 재사용성을 극대화 하는 것입니다. Handler 외부에서 SDK 클라이언트나 DB 에 연결한다면 해당 인스턴스로 이후에 들어오는 이 후 요청들은 리소스를 재사용하기 때문에 실행시간이 최적화 되게 됩니다.
+5. 콘솔에서 [Test] 버튼을 클릭하여 Lambda 를 실행해보면 실행 시간이 약 700ms 인 것을 확인할 수 있습니다.
+
+```
+Test Event Name
+apptest
+
+Response
+{
+  "statusCode": 200,
+  "body": "\"2021-11-02T11:45:52\""
+}
+
+Function Logs
+START RequestId: 7fdcedb9-7d97-46b1-a976-f98a0289e44a Version: $LATEST
+END RequestId: 7fdcedb9-7d97-46b1-a976-f98a0289e44a
+REPORT RequestId: 7fdcedb9-7d97-46b1-a976-f98a0289e44a	Duration: 701.73 ms	Billed Duration: 702 ms	Memory Size: 128 MB	Max Memory Used: 72 MB
+
+Request ID
+7fdcedb9-7d97-46b1-a976-f98a0289e44a
 ```
 
+6. 아래와 같이 코드 최적화를 해봅니다.
+
+```Python
+import json
+import pymysql
+import boto3
+import base64
+import time
+from botocore.exceptions import ClientError
+
+secret_name = "serverless-app-rds-secret"
+region_name = "ap-northeast-2"
+
+def get_secret():    
+    session = boto3.session.Session()
+    client = session.client(
+        service_name = 'secretsmanager',
+        region_name = region_name
+    )
+
+    get_secret_value_response = client.get_secret_value(
+        SecretId=secret_name
+    )
+
+    if 'SecretString' in get_secret_value_response:
+        secret = get_secret_value_response['SecretString']
+        return secret
+    else:
+        decoded_binary_secret = base64.b64decode(get_secret_value_response['SecretBinary'])
+        return decoded_binary_secret
+
+secret = get_secret()
+json_secret = json.loads(secret)
+
+db = pymysql.connect(
+    host = 'YOUR RDS PROXY ENDPOINT', 
+    user = json_secret['username'], 
+    password = json_secret['password']
+    )
+
+cursor = db.cursor()
+
+def lambda_handler(event, context):
+    cursor.execute("select now()")
+    result = cursor.fetchone()
+
+    db.commit()
+    
+    return {
+        'statusCode': 200,
+        'body': json.dumps(result[0].isoformat())
+    }
+```
+>40 라인의 lambda_handler() 내부를 살펴보면 get_secret() 이나 pymysql.connect() 와 같은 부분을 Handler 함수 외부에서 초기화하는 것에 주목합니다.
+
+7. 코드를 수정했다면 [Deploy] 버튼으로 배포한 뒤 [Test] 버튼을 클릭하여 실행시간을 확인해봅니다.
+8. 실행 시간이 약 5 ms 로 엄청나게 최적화 된 것을 확인할 수 있습니다.
+
+```
+Test Event Name
+apptest
+
+Response
+{
+  "statusCode": 200,
+  "body": "\"2021-11-02T11:43:24\""
+}
+
+Function Logs
+START RequestId: 855c8781-e04f-4b61-9216-67a0436ee068 Version: $LATEST
+END RequestId: 855c8781-e04f-4b61-9216-67a0436ee068
+REPORT RequestId: 855c8781-e04f-4b61-9216-67a0436ee068	Duration: 4.71 ms	Billed Duration: 5 ms	Memory Size: 128 MB	Max Memory Used: 63 MB
+
+Request ID
+855c8781-e04f-4b61-9216-67a0436ee068
+```
 
 15. 1차 부하 테스트
 16. AWS Lambda 코드 최적화
