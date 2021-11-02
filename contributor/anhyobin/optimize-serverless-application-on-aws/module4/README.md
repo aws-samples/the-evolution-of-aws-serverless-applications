@@ -77,7 +77,7 @@ $ locust
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/5.png"></img></div>
 
 17. 좌측의 [Instaces] 메뉴로 다시 이동한 뒤 aws-cloud9-Locust 인스턴스의 Public IP 를 복사합니다.
-18. 브라우저의 새 탭을 연 뒤 http://'Cloud9 Instance Public IP':8089 를 입력하여 Locust web interface 에 접속합니다. 부하 테스트를 위한 Locust 구성을 완료했습니다.
+18. 브라우저의 새 탭을 연 뒤 ```http://Cloud9 Instance Public IP:8089``` 를 입력하여 Locust web interface 에 접속합니다. 부하 테스트를 위한 Locust 구성을 완료했습니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/6.png"></img></div>
 
