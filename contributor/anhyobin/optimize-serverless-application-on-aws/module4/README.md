@@ -171,8 +171,6 @@ import json
 import pymysql
 import boto3
 import base64
-import time
-from botocore.exceptions import ClientError
 
 secret_name = "serverless-app-rds-secret"
 region_name = "ap-northeast-2"
@@ -241,7 +239,14 @@ Request ID
 8ea70435-3081-4257-8cb8-ad9b667ba1ac
 ```
 
+### Step 4. 2차 부하 테스트
 
-15. 1차 부하 테스트
-16. AWS Lambda 코드 최적화
-17. 2차 부하 테스트 및 결과 
+Lambda 의 실행 시간이 약 1/100 로 단축되었습니다. 부하 테스트를 다시 진행해보면 기존 발생했던 스로틀이 어느 정도 해소되었을 것 같습니다.
+
+1. 브라우저의 새 탭을 연 뒤 ```http://Cloud9 Instance Public IP:8089``` 를 입력하여 Locust web interface 에 접속합니다.
+2. 앞의 테스트 후 종료하지 않았다면 우측 상단의 [New test] 옵션을 선택합니다.
+3. 앞서와 동일하게 [Number of users] 는 ```10000```, [Spawn rate] 에는 ```500```, [Host] 는 ```API Gateway Invoke URL``` 을 입력합니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/12.png"></img></div>
+
+4. [Start swarming] 버튼을 클릭하여 부하를 줍니다.
