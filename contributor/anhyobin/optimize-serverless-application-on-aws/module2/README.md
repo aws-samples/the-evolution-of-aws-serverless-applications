@@ -174,7 +174,7 @@ def lambda_handler(event, context):
 }
 ```
 
-> 한 가지 재밌는 점은 최초 테스트 때의 Duration 을 확인한 뒤 이 후에 다시 테스트를 수행하면 실행 시간이 최초 실행에 비해 줄어드는 것을 확인할 수 있습니다. 이는 Lambda 의 콜드스타트 때문입니다. 이 후 [Module 4. XXXX]() 에서는 부하테스트와 더불어 콜드스타트 시간을 최적화 하는 방법에 대해 다루고 있습니다. 다음 [블로그](https://aws.amazon.com/blogs/compute/new-for-aws-lambda-predictable-start-up-times-with-provisioned-concurrency/) 에 이에 관련된 내용 설명이 있습니다.
+> 한 가지 재밌는 점은 최초 테스트 때의 Duration 을 확인한 뒤 이 후에 다시 테스트를 수행하면 실행 시간이 최초 실행에 비해 줄어드는 것을 확인할 수 있습니다. 이는 Lambda 의 콜드스타트 때문입니다. 이 후 Module 4 에서는 부하테스트와 더불어 콜드스타트 시간을 최적화 하는 방법에 대해 다루고 있습니다. 다음 [블로그](https://aws.amazon.com/blogs/compute/new-for-aws-lambda-predictable-start-up-times-with-provisioned-concurrency/) 에 이에 관련된 내용 설명이 있습니다.
 
 ### Step 4. Amazon API Gateway 구성
 
