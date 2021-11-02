@@ -81,8 +81,6 @@ $ locust
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/6.png"></img></div>
 
-    ![6](https://user-images.githubusercontent.com/76983889/139796396-c7d72460-d383-4044-a209-9dac9c6347c8.png)
-
 ### Step 2. 1차 부하 테스트
 
 15. 1차 부하 테스트
