@@ -106,6 +106,19 @@ Lambda 함수를 최적화 하기 전 현재 구성한 환경에서 어떻게 �
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/9.png"></img></div>
 
+5. 실제 Lambda 의 호출과 스케일링을 확인해보겠습니다. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS Lambda 서비스로 이동합니다.
+6. 앞서 구성한 serverless-app-lambda 를 선택한 뒤 [Monitor] 탭으로 이동하면 Lambda 에서 제공하는 메트릭을 확인할 수 있습니다. 그래프를 살펴보면 최초 Burst Limit 에 도달한 뒤 1분당 500 씩 Concurrent executions 이 증가하는 것을 확인할 수 있습니다. 그에 따라 최초 스케일링 전 스로틀이 발생했다가 Lambda 가 스케일링 되면서 해소되는 것을 확인할 수 있습니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/10.png"></img></div>
+
+> AWS 에서 제공하는 기본 Concurrent executions 제한이 1000이기 때문에 스케일링에 대한 부분 확인이 어려울 수 있습니다. 
+
+7. 이 후 테스트를 위해 Locust web interface 로 이동한 뒤 상단의 STOP 버튼을 클릭하여 부하 테스트를 중지합니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/11.png"></img></div>
+
+### Lambda 코드 최적화
+
 15. 1차 부하 테스트
 16. AWS Lambda 코드 최적화
 17. 2차 부하 테스트 및 결과 
