@@ -83,6 +83,24 @@ $ locust
 
 ### Step 2. 1차 부하 테스트
 
+Lambda 함수를 최적화 하기 전 현재 구성한 환경에서 어떻게 스케일링이 이루어지고 요청의 스로틀이 발생하는지 살펴보겠습니다.
+
+1. Locust web interface 화면의 3가지 옵션을 통해 부하를 발생시키게 됩니다.
+
+- Number of users 는 동시에 실행하는 최대의 Locust user 입니다.
+- Spawn rate 는 초당 생성하는 Locust user 입니다. 최대 Number of users 까지 스케일링이 이루어집니다.
+- Host 는 부하를 발생할 호스트입니다. 오늘 실습에서는 API Gateway 의 Endpoint 가 해당됩니다.
+
+2. [Number of users] 는 ```5000```, [Spawn rate] 에는 ```500```, [Host] 는 ```API Gateway Invoke URL``` 을 입력합니다.
+
+> API Gateway Invoke URL 은 API Gateway 에서 생성한 API 의 Stages 메뉴에서 확인할 수 있습니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/7.png"></img></div>
+
+3. 아래와 같이 입력했다면 [Start swarming] 버튼을 클릭하여 부하를 줍니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/8.png"></img></div>
+
 15. 1차 부하 테스트
 16. AWS Lambda 코드 최적화
 17. 2차 부하 테스트 및 결과 
