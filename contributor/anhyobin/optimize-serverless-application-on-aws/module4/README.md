@@ -91,9 +91,10 @@ Lambda 함수를 최적화 하기 전 현재 구성한 환경에서 어떻게 �
 - Spawn rate 는 초당 생성하는 Locust user 입니다. 최대 Number of users 까지 스케일링이 이루어집니다.
 - Host 는 부하를 발생할 호스트입니다. 오늘 실습에서는 API Gateway 의 Endpoint 가 해당됩니다.
 
-2. [Number of users] 는 ```5000```, [Spawn rate] 에는 ```500```, [Host] 는 ```API Gateway Invoke URL``` 을 입력합니다.
+2. [Number of users] 는 ```10000```, [Spawn rate] 에는 ```500```, [Host] 는 ```API Gateway Invoke URL``` 을 입력합니다.
 
 > API Gateway Invoke URL 은 API Gateway 에서 생성한 API 의 Stages 메뉴에서 확인할 수 있습니다.
+> Number of users 나 Spawn rate 값은 임의로 변경하여 테스트해도 괜찮습니다. 부하 발생 중 값 변경도 가능합니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/7.png"></img></div>
 
