@@ -9,13 +9,27 @@ Lambda 는 동시 실행 한도보다 먼저 초기 트래픽 버스트의 경�
 
 Module 4 에서는 [AWS Lambda 모범 사례](https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html) 중 일부를 적용하여 성능을 향상 시키는 방법을 알아보고 오픈 소스 부하테스트 도구인 [Locust](https://locust.io/) 를 활용해 Lambda 스케일링에 관해 알아보겠습니다.
 
-### Step 1. AWS Cloud9 에 부하테스트 도구인 Locust 구성
+### Step 1. AWS Cloud9 에 부하테스트 도구인 Locust 생성
 서비스 런칭 전에 사용할 수 있는 부하테스트 도구는 [JMeter](http://jmeter.apache.org/), [ApacheBench](https://httpd.apache.org/docs/2.4/programs/ab.html), [Vegeta](https://github.com/tsenart/vegeta) 등으로 굉장히 다양합니다. 또한 AWS 에서는 [Distributed Load Testing on AWS](https://aws.amazon.com/solutions/implementations/distributed-load-testing-on-aws/) 라는 솔루션을 제공하고 있으며 이를 통해 애플리케이션의 스케일과 안정성 등에 대해 테스트를 수행할 수 있습니다.
 
 이번 단계에서는 오픈 소스 부하테스트 도구인 [Locust](https://locust.io/) 를 AWS Cloud9 에 설치해 간단한 Python 코드로 손쉽게 부하테스트를 수행해보겠습니다. 이를 통해 지금까지 구성한 서버리스 애플리케이션을 테스트하고 스케일링에 관해 알아봅니다.
 
 1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS Cloud9 서비스로 이동합니다.
+2. 화면의 [Create environment] 버튼을 클릭합니다.
+3. Name 은 `Locust` 를 입력하고 [Next step] 버튼을 클릭합니다.
+4. Instance type 은 [Other instance type] 을 선택하고 아래에서 [c5.24xlarge] 를 선택합니다. 
 
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/1.png"></img></div>
+
+> Event Engine 을 활용하는 AWS Event 가 아니라면 더 작은 인스턴스 타입을 선택해도 괜찮습니다. Locust 의 부하 발생 TPS 의 차이가 발생합니다.
+
+5. 하단 [Network settings (advanced)] 메뉴를 확장한 뒤 Network (VPC) 는 [serverless-app-vpc] 를 선택하고 Subnet 은 [cloud9-subnet-a] 를 선택합니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/2.png"></img></div>
+
+6. 하단의 [Next step] 을 선택하고 [Create environment] 를 선택하여 Cloud9 생성을 완료합니다. 생성에는 시간이 소요되며 생성이 완료되면 바로 IDE 환경에 접속하게 됩니다.
+
+### Step 2. 
 
 2. 1차 부하 테스트
 3. AWS Lambda 코드 최적화
