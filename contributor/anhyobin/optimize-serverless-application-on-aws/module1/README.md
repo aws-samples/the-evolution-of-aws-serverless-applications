@@ -50,7 +50,7 @@ def lambda_handler(event, context):
         'body': json.dumps('Hello from Lambda!')
     }
 ```
-보시는 것처럼 모든 Lambda 함수에는 [Handler](https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/python-handler.html) 가 포함 되어 있습니다. Lambda 함수가 호출되면 실행되는 메소드가 바로 이 Handler 메소드입니다. 이러한 특징을 이용하여 Lambda 함수의 코드를 최적화 하는 실습은 [Module 2.X. AWS Lambda 코드 최적화]() 에서 조금 더 살펴보도록 하겠습니다.
+보시는 것처럼 모든 Lambda 함수에는 [Handler](https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/python-handler.html) 가 포함 되어 있습니다. Lambda 함수가 호출되면 실행되는 메소드가 바로 이 Handler 메소드입니다. 이러한 특징을 이용하여 Lambda 함수의 코드를 최적화 하는 실습은 Module 4 에서 살펴봅니다.
   
 이번 실습에 사용되는 함수는 Amazon S3 에 파일이 업로드 되는 이벤트가 발생하면 Amazon SNS 를 통해 사용자에게 이메일을 발송합니다. 이러한 로직은 lambda_handler() 메소드 내부에 구현해주면 됩니다. Lambda 함수의 가장 기본이 되는 구조입니다.
   
