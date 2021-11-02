@@ -102,6 +102,10 @@ Lambda 함수를 최적화 하기 전 현재 구성한 환경에서 어떻게 �
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/8.png"></img></div>
 
+4. 상단의 [Charts] 메뉴로 이동하면 RPS 등 부하 상황을 그래프로 확인할 수 있습니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/9.png"></img></div>
+
 15. 1차 부하 테스트
 16. AWS Lambda 코드 최적화
 17. 2차 부하 테스트 및 결과 
