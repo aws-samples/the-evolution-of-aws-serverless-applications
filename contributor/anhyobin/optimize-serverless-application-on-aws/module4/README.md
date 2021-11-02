@@ -220,7 +220,7 @@ def lambda_handler(event, context):
 >40 라인의 lambda_handler() 내부를 살펴보면 get_secret() 이나 pymysql.connect() 와 같은 부분을 Handler 함수 외부에서 초기화하는 것에 주목합니다.
 
 7. 코드를 수정했다면 [Deploy] 버튼으로 배포한 뒤 [Test] 버튼을 클릭하여 실행시간을 확인해봅니다.
-8. 실행 시간이 약 5 ms 로 엄청나게 최적화 된 것을 확인할 수 있습니다.
+8. 실행 시간이 약 7ms 로 엄청나게 최적화 된 것을 확인할 수 있습니다. 당연히 실행 시간이 줄어든 만큼 비용 역시도 줄어들게 될 것입니다.
 
 ```
 Test Event Name
@@ -229,17 +229,18 @@ apptest
 Response
 {
   "statusCode": 200,
-  "body": "\"2021-11-02T11:43:24\""
+  "body": "\"2021-11-02T11:46:58\""
 }
 
 Function Logs
-START RequestId: 855c8781-e04f-4b61-9216-67a0436ee068 Version: $LATEST
-END RequestId: 855c8781-e04f-4b61-9216-67a0436ee068
-REPORT RequestId: 855c8781-e04f-4b61-9216-67a0436ee068	Duration: 4.71 ms	Billed Duration: 5 ms	Memory Size: 128 MB	Max Memory Used: 63 MB
+START RequestId: 8ea70435-3081-4257-8cb8-ad9b667ba1ac Version: $LATEST
+END RequestId: 8ea70435-3081-4257-8cb8-ad9b667ba1ac
+REPORT RequestId: 8ea70435-3081-4257-8cb8-ad9b667ba1ac	Duration: 7.66 ms	Billed Duration: 8 ms	Memory Size: 128 MB	Max Memory Used: 63 MB
 
 Request ID
-855c8781-e04f-4b61-9216-67a0436ee068
+8ea70435-3081-4257-8cb8-ad9b667ba1ac
 ```
+
 
 15. 1차 부하 테스트
 16. AWS Lambda 코드 최적화
