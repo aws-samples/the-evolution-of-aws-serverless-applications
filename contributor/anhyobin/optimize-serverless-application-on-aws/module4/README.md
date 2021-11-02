@@ -250,3 +250,12 @@ Lambda 의 실행 시간이 약 1/100 로 단축되었습니다. 부하 테스�
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/12.png"></img></div>
 
 4. [Start swarming] 버튼을 클릭하여 부하를 줍니다.
+5. 다시 Lambda 콘솔로 이동한 뒤 [Monitor] 탭을 통해 메트릭을 확인합니다. 실행 시간이 최적화 되어 Concurrent executions 가 수천 단위까지 생성되던 것이 약 100개 정도로 떨어진 것을 확인할 수 있습니다. 또한 스로틀은 전혀 발생하지 않는 것을 확인할 수 있습니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/13.png"></img></div>
+
+6. 1차 테스트 때와 비교해보면 코드 최적화 이후 테스트에서 줄어든 Throttles 와 Concurrent executions, 그리고 Duration 등을 확인할 수 있습니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/14.png"></img></div>
+
+이번 장에서는 Lambda 함수를 최적화 하는 방법과 Locust 부하 발생기를 통해 Lambda 의 스케일링, 실행 시간과 동시성의 관계 등에 대해 살펴봤습니다. [Module 5. 서버리스 애플리케이션 추적 및 성능 모니터링](https://github.com/aws-samples/aws-games-sa-kr/edit/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/README.md) 로 이동합니다.
