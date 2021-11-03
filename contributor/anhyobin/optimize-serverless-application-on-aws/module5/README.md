@@ -37,7 +37,7 @@ Step 1. 에서 활성화 하였던 AWS X-Ray 에 수집된 추적 정보 및 시
 
 3. 각 노드 및 노드를 연결하는 엣지를 클릭하면 레이턴시에 대한 히스토그램 정보도 확인할 수 있습니다.
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/2.png"></img></div><br/>
-위 화면은 API Gateway 에서 모든 요청 (100%)이 약 783ms 의 레이턴시가 소요되었다는 것을 의미합니다.<br/>
+위 화면은 API Gateway 에서 모든 요청 (100%)이 약 783ms 의 레이턴시가 소요되었다는 것을 의미합니다.  
 
 > 히스토그램 해석에 대한 추가 정보는 [AWS X-Ray 개발자 가이드](https://docs.aws.amazon.com/xray/latest/devguide/xray-console-histograms.html#xray-console-historgram-details)를 확인하시기 바랍니다.
 
