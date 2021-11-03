@@ -43,8 +43,10 @@ Step 1. 에서 활성화 하였던 AWS X-Ray 에 수집된 추적 정보 및 시
 
 4. 좌측 패널의 [Traces]를 클릭하여, 추적 리스트로 이동합니다. 만약 5분이 경과하여 추적 리스트에 데이터가 확인되지 않는다면, 우측 상단의 [Last 5 minutes] 버튼을 클릭하여 시간을 조정합니다.
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/3.png"></img></div>
+
 5. 추적들이 기본적으로 URL 기준으로 그룹화 되어 있는 것을 확인할 수 있으며, 평균 응답 시간, 응답 정보에 대한 통계를 확인할 수 있습니다. [Trace list] 리스트 상단에 있는 링크를 클릭하여, 추적 상세 페이지로 이동합니다. 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/4.png"></img></div>
+
 6. 상세 페이지에서는 메소드, 응답 코드, 총 레이턴시, 추적ID의 전반적인 정보 및 서비스맵과 유사한 추적 맵 정보를 확인 할 수 있습니다.
 또한 각 노드 별 상세 레이턴시 및 응답 코드 정보 또한 확인할 수 있습니다.
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/5.png"></img></div>
