@@ -15,6 +15,8 @@ Amazon API Gateway에 등록된 리소스에 대한 요청 경로는 추적 ID(t
 2. 리스트에서 serverless-app-api를 선택하여 상세 페이지로 이동한 후, 좌측 패널의 [Stages]를 선택합니다.
 3. [Stages] 리스트에서 dev 를 선택하고, 우측 [Stage Editor]에서 [Logs/Tracing] 탭을 선택합니다.
 4. [X-Ray Tracing] 섹션 아래 [Enable X-Ray Tracing] 의 체크박스를 선택하고 [Save Changes]를 눌러 활성화 시킵니다.
-5. AWS X-Ray의 추적을 확인하기 위해 상단 [Invoke URL]을 복사하여 브라우저에서 연결하거나 터미널에서 호출해봅니다. 
+5. 
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/0.png"></img></div>
+6. AWS X-Ray의 추적을 확인하기 위해 상단 [Invoke URL]을 복사하여 브라우저에서 연결하거나 터미널에서 호출해봅니다. 
 
 > AWS X-Ray는 모든 요청을 추적하는 것이 아니라 샘플링을 통해 요청에 대한 대표값을 제공하고 있습니다. 기본적으로 초당 1개 및 추가 샘플링 비율 (1%) 로 설정되어 있습니다. 이 기본 규칙은 커스텀하게도 변경할 수 있으며, 추가 정보는 [X-Ray 샘플링 규칙](https://docs.aws.amazon.com/ko_kr/xray/latest/devguide/xray-console-sampling.html)을 참고하시기 바랍니다.
