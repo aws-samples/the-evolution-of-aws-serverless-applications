@@ -31,23 +31,21 @@ Step 1. 에서 활성화 하였던 AWS X-Ray 에 수집된 추적 정보 및 시
 1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS X-Ray 서비스로 이동합니다.
 2. 기본적으로 클라이언트에서 `dev` 스테이지를 호출하였을 때의 때서비스 맵이 로딩되는 것을 확인할 수 있습니다. 각 노드는 각각 Amazon API Gateway, AWS Lambda 서비스를 나타내며 레이턴시 정보를 확인할 수 있습니다.
 
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/1.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/1.png"></img></div>  
 
 > 만약 정보가 로딩되지 않는다면 상단의 새로고침 아이콘을 선택합니다. 기본적으로 최근 5분까지의 데이터만 검색해서 보여주기 때문에 만약 Step 1. 에서 REST API 를 호출한지 5분이 지났다면, 새로 호출하거나 시간 범위를 넓게 설정합니다.
 
 3. 각 노드 및 노드를 연결하는 엣지를 클릭하면 레이턴시에 대한 히스토그램 정보도 확인할 수 있습니다.
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/2.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/2.png"></img></div>. 
 위 화면은 API Gateway 에서 모든 요청 (100%)이 약 783ms 의 레이턴시가 소요되었다는 것을 의미합니다. 
 
 > 히스토그램 해석에 대한 추가 정보는 [AWS X-Ray 개발자 가이드](https://docs.aws.amazon.com/xray/latest/devguide/xray-console-histograms.html#xray-console-historgram-details)를 확인하시기 바랍니다.
 
 4. 좌측 패널의 [Traces]를 클릭하여, 추적 리스트로 이동합니다. 만약 5분이 경과하여 추적 리스트에 데이터가 확인되지 않는다면, 우측 상단의 [Last 5 minutes] 버튼을 클릭하여 시간을 조정합니다.
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/3.png"></img></div>
-\
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/3.png"></img></div>. 
 
 5. 추적들이 기본적으로 URL 기준으로 그룹화 되어 있는 것을 확인할 수 있으며, 평균 응답 시간, 응답 정보에 대한 통계를 확인할 수 있습니다. [Trace list] 리스트 상단에 있는 링크를 클릭하여, 추적 상세 페이지로 이동합니다. 
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/4.png"></img></div>
-\
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/4.png"></img></div>. 
 
 6. 상세 페이지에서는 메소드, 응답 코드, 총 레이턴시, 추적ID의 전반적인 정보 및 서비스맵과 유사한 추적 맵 정보를 확인 할 수 있습니다.
 또한 각 노드 별 상세 레이턴시 및 응답 코드 정보 또한 확인할 수 있습니다.
