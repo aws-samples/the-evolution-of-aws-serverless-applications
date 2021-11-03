@@ -19,7 +19,7 @@ Amazon API Gateway에 등록된 리소스에 대한 요청 경로는 추적 ID(t
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/0.png"></img></div>
 
-6. AWS X-Ray의 추적을 확인하기 위해 상단 [Invoke URL]을 복사하여 브라우저에서 연결하거나 터미널에서 호출해봅니다. 
+5. AWS X-Ray의 추적을 확인하기 위해 상단 [Invoke URL]을 복사하여 브라우저에서 연결하거나 터미널에서 호출해봅니다. 
 
 > AWS X-Ray는 모든 요청을 추적하는 것이 아니라 샘플링을 통해 요청에 대한 대표값을 제공하고 있습니다. 기본적으로 AWS X-Ray SDK는 매초 최초 요청과 추가 요청의 5% 를 기록합니다. 
 이 기본 규칙은 커스텀하게도 변경할 수 있으며, 추가 정보는 [X-Ray 샘플링 규칙](https://docs.aws.amazon.com/ko_kr/xray/latest/devguide/xray-console-sampling.html)을 참고하시기 바랍니다.
@@ -37,7 +37,7 @@ Step 1. 에서 활성화 하였던 AWS X-Ray 에 수집된 추적 정보 및 시
 
 3. 각 노드 및 노드를 연결하는 엣지를 클릭하면 레이턴시에 대한 히스토그램 정보도 확인할 수 있습니다.
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/2.png"></img></div>
-위 화면은 API Gateway 에서 모든 요청 (100%)이 약 783ms 의 레이턴시가 소요되었다는 것을 의미합니다. 
+위 화면은 API Gateway 에서 모든 요청 (100%)이 약 783ms 의 레이턴시가 소요되었다는 것을 의미합니다.<br/>
 
 > 히스토그램 해석에 대한 추가 정보는 [AWS X-Ray 개발자 가이드](https://docs.aws.amazon.com/xray/latest/devguide/xray-console-histograms.html#xray-console-historgram-details)를 확인하시기 바랍니다.
 
@@ -49,4 +49,95 @@ Step 1. 에서 활성화 하였던 AWS X-Ray 에 수집된 추적 정보 및 시
 
 6. 상세 페이지에서는 메소드, 응답 코드, 총 레이턴시, 추적ID의 전반적인 정보 및 서비스맵과 유사한 추적 맵 정보를 확인 할 수 있습니다.
 또한 각 노드 별 상세 레이턴시 및 응답 코드 정보 또한 확인할 수 있습니다.
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/5.png"></img></div><br/>
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/5.png"></img></div>
+
+### Step 3-1. AWS Lambda의 AWS X-Ray 추적 활성화
+Step 2. 를 통해 Amazon API Gateway 에 AWS X-Ray를 활성화하여 **클라이언트 - Amazon API Gateway - AWS Lambda** 서비스 구간의 정보를 확인할 수 있었습니다. 하지만, AWS Lambda 함수에서 RDS SQL 쿼리 소요 시간등과 같은 세부적인 정보는 확인할 수 없었습니다. 이를 위해 AWS Lambda 에서도 AWS X-Ray 추적을 활성화 해야합니다. 
+
+1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS Lambda 서비스로 이동합니다.
+2. 이전에 생성한 **serverless-app-lambda** 를 선택하고, [Configuration] 탭의 [Monitoring and operations tools] 메뉴로 이동하여 좌측 상단의 [Edit] 버튼을 클릭합니다.
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/6.png"></img></div><br/>
+3. [Edit monitoring tools] 화면에서 [AWS X-Ray] 섹션의 [Active tracing] 토글을 클릭합니다. 이때 현재 AWS Lambda 함수에 AWS X-Ray 에 세그먼트 정보를 전달하기 위한 권한이 없기 때문에 자동으로 추가할 것이라는 안내 메시지가 나옵니다. [Save] 버튼을 눌러 활성화 시킵니다.
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/7.png"></img></div><br/>
+4. 정상적으로 활성화가 되면 [Monitoring and operations tools] 메뉴에서 [Active tracing] 상태가 `Enabled` 된것을 확인할 수 있습니다.
+
+### Step 3-2. AWS X-Ray SDK 레이어 추가 및 패치 하기
+AWS X-Ray SDK를 활용하여 Lambda 핸들러 내부에서 `pymysql` 와 같은 라이브러리를 사용한 다운스트림 호출을 기록할 수 있습니다. 이를 위해서는 AWS X-Ray Python SDK를 사용하여 함수에서 사용하는 라이브러리를 패치해야합니다. 라이브러리들을 패치하게 되면, AWS X-Ray 에서 알아서 해당 라이브러리를 사용한 호출을 추적의 서브세그먼트(Subsegment)로 인식하여 정보를 전달하게 됩니다. 
+
+1. 로컬 환경에서 [AWS X-Ray SDK for Python를 다운로드](https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-python.html)하여 ZIP으로 압축시키거나, 다음 [링크]()를 통해 AWS X-Ray SDK ZIP 파일을 다운로드 받습니다.
+2. [Module 2.Step 3-2](https://github.com/aws-samples/aws-games-sa-kr/tree/main/contributor/anhyobin/optimize-serverless-application-on-aws/module2#step-3-2-lambda-layer-%EA%B5%AC%EC%84%B1) 를 참고하여 **aws-xray-sdk** 라는 Lambda Layer를 등록하고, `serverless-app-lambda` 함수의 레이어로 추가합니다.
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/8.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/9.png"></img></div><br/>
+3. 이제 AWS X-Ray SDK를 함수에 Import하고, 다운스트림 호출을 기록하기 위해 라이브러리를 패치합니다. 이는 Lambda 함수가 초기화 시에만 필요하기 때문에 Handler 함수 외부에 아래와 같이 정의합니다.
+```python
+from aws_xray_sdk.core import xray_recorder
+from aws_xray_sdk.core import patch_all
+
+patch_all()
+```
+> AWS X-Ray for Python 는 특정 라이브러리들에 대해서만 패치를 지원하고 있습니다. 지원하는 리스트는 [AWS X-Ray 개발자 가이드](https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-python-patching.html) 를 참고 하시기 바랍니다. 
+
+전체 Lambda 함수 코드는 아래와 같습니다.
+```python
+import json
+import pymysql
+import boto3
+import base64
+
+from aws_xray_sdk.core import xray_recorder
+from aws_xray_sdk.core import patch_all
+
+patch_all()
+
+secret_name = "serverless-app-rds-secret"
+region_name = "ap-northeast-2"
+
+def get_secret():    
+    session = boto3.session.Session()
+    client = session.client(
+        service_name = 'secretsmanager',
+        region_name = region_name
+    )
+
+    get_secret_value_response = client.get_secret_value(
+        SecretId=secret_name
+    )
+
+    if 'SecretString' in get_secret_value_response:
+        secret = get_secret_value_response['SecretString']
+        return secret
+    else:
+        decoded_binary_secret = base64.b64decode(get_secret_value_response['SecretBinary'])
+        return decoded_binary_secret
+
+secret = get_secret()
+json_secret = json.loads(secret)
+
+db = pymysql.connect(
+    host = 'serverless-app-rds-proxy.proxy-c6hoagfyd6lw.ap-northeast-2.rds.amazonaws.com', 
+    user = json_secret['username'], 
+    password = json_secret['password']
+    )
+
+cursor = db.cursor()
+
+def lambda_handler(event, context):
+    cursor.execute("select now()")
+    result = cursor.fetchone()
+
+    db.commit()
+    
+    return {
+        'statusCode': 200,
+        'body': json.dumps(result[0].isoformat())
+    }
+ ```
+ 4. 변경된 코드를 Deploy 하고, AWS X-Ray 에서 AWS Lambda 함수의 정보도 기록되는지 확인을 하기 위해서 API Gateway의 엔드포인트로 다시 한번 브라우저 혹은 터미널에서 호출합니다.
+ 5. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS X-Ray 서비스로 이동합니다.
+ 6. AWS X-Ray 서비스 맵에서 AWS Lambda Function 노드 및 SQL 쿼리 실행 노드가 추가된것을 확인할 수 있습니다.
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/10.png"></img></div><br/>
+ 7. [Trace list] 에서 상단의 추적을 선택하여 상세 페이지로 이동하면, Lambda 함수 초기화 및 SQL 쿼리 실행 레이턴시 정보를 담은 상세 정보를 확인할 수 있습니다.
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/11.png"></img></div><br/>
+
+## [선택 사항 | 챌린지]
+[Module 4.](https://github.com/aws-samples/aws-games-sa-kr/tree/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4) 의 부하테스트를 수행 한 후에, X-Ray에 수집되는 정보들을 한번 확인해봅니다. 
