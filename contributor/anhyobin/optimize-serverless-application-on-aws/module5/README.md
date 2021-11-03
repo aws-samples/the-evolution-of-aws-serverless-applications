@@ -36,7 +36,7 @@ Step 1. 에서 활성화 하였던 AWS X-Ray 에 수집된 추적 정보 및 시
 > 만약 정보가 로딩되지 않는다면 상단의 새로고침 아이콘을 선택합니다. 기본적으로 최근 5분까지의 데이터만 검색해서 보여주기 때문에 만약 Step 1. 에서 REST API 를 호출한지 5분이 지났다면, 새로 호출하거나 시간 범위를 넓게 설정합니다.
 
 3. 각 노드 및 노드를 연결하는 엣지를 클릭하면 레이턴시에 대한 히스토그램 정보도 확인할 수 있습니다.
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/2.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/2.png"></img></div><br/>
 위 화면은 API Gateway 에서 모든 요청 (100%)이 약 783ms 의 레이턴시가 소요되었다는 것을 의미합니다.<br/>
 
 > 히스토그램 해석에 대한 추가 정보는 [AWS X-Ray 개발자 가이드](https://docs.aws.amazon.com/xray/latest/devguide/xray-console-histograms.html#xray-console-historgram-details)를 확인하시기 바랍니다.
@@ -57,7 +57,7 @@ Step 2. 를 통해 Amazon API Gateway 에 AWS X-Ray를 활성화하여 **클라�
 1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS Lambda 서비스로 이동합니다.
 2. 이전에 생성한 **serverless-app-lambda** 를 선택하고, [Configuration] 탭의 [Monitoring and operations tools] 메뉴로 이동하여 좌측 상단의 [Edit] 버튼을 클릭합니다.
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/6.png"></img></div><br/>
-3. [Edit monitoring tools] 화면에서 [AWS X-Ray] 섹션의 [Active tracing] 토글을 클릭합니다. 이때 현재 AWS Lambda 함수에 AWS X-Ray 에 세그먼트 정보를 전달하기 위한 권한이 없기 때문에 자동으로 추가할 것이라는 안내 메시지가 나옵니다. [Save] 버튼을 눌러 활성화 시킵니다.
+3. [Edit monitoring tools] 화면에서 [AWS X-Ray] 섹션의 [Active tracing] 토글을 클릭합니다. 이때 현재 AWS Lambda 함수에 AWS X-Ray 에 세그먼트 정보를 전달하기 위한 권한이 없기 때문에 자동으로 추가할 것이라는 안내 메시지가 나옵니다. [Save] 버튼을 눌러 활성화 시킵니다.<br/>
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/7.png"></img></div><br/>
 4. 정상적으로 활성화가 되면 [Monitoring and operations tools] 메뉴에서 [Active tracing] 상태가 `Enabled` 된것을 확인할 수 있습니다.
 
