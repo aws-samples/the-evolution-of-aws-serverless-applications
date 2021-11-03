@@ -69,12 +69,14 @@ AWS X-Ray SDK를 활용하여 Lambda 핸들러 내부에서 `pymysql` 와 같은
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/8.png"></img></div>
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/9.png"></img></div><br/>
 3. 이제 AWS X-Ray SDK를 함수에 Import하고, 다운스트림 호출을 기록하기 위해 라이브러리를 패치합니다. 이는 Lambda 함수가 초기화 시에만 필요하기 때문에 Handler 함수 외부에 아래와 같이 정의합니다.
+
 ```python
 from aws_xray_sdk.core import xray_recorder
 from aws_xray_sdk.core import patch_all
 
 patch_all()
 ```
+
 > AWS X-Ray for Python 는 특정 라이브러리들에 대해서만 패치를 지원하고 있습니다. 지원하는 리스트는 [AWS X-Ray 개발자 가이드](https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-python-patching.html) 를 참고 하시기 바랍니다. 
 
 전체 Lambda 함수 코드는 아래와 같습니다.
