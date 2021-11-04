@@ -32,7 +32,7 @@ Step 1. 에서 활성화 하였던 AWS X-Ray 에 수집된 추적 정보 및 시
 
 1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS X-Ray 서비스로 이동합니다.
 2. 최초 사용으로 [Get started] 가 표시된다면 버튼을 클릭한 뒤 구성 화면에서 [Cancel] 버튼을 클릭하여 대시보드로 이동합니다.
-3. 좌측의 [Service map] 메뉴로 이동합니다. 기본적으로 클라이언트에서 `dev` 스테이지를 호출하였을 때의 때서비스 맵이 로딩되는 것을 확인할 수 있습니다. 각 노드는 각각 Amazon API Gateway, AWS Lambda 서비스를 나타내며 레이턴시 정보를 확인할 수 있습니다.
+3. 좌측의 [Service map] 메뉴로 이동합니다. 기본적으로 클라이언트에서 `dev` 스테이지를 호출하였을 때의 때서비스 맵이 로딩되는 것을 확인할 수 있습니다. 각 노드는 각각 API Gateway, Lambda 서비스를 나타내며 레이턴시 정보를 확인할 수 있습니다.
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/1.png"></img></div>
 
