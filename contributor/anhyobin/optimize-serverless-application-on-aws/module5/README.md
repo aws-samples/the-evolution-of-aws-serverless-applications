@@ -8,7 +8,7 @@ AWS X-Ray는 서비스 요청 혹은 수행중인 작업에 대한 데이터를 
 
 <div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/module5_architecture.png"></img></div> 
 
-이번 모듈에서는 지금까지 구축된 Amazon API Gateway, AWS Lambda에 AWS X-Ray 활성화를 서버리스 애플리케이션 구성 요소들을 도식화하고, 세부 추적 정보를 확인해보도록 하겠습니다. 
+이번 모듈에서는 지금까지 구축된 Amazon API Gateway, AWS Lambda 를 활용한 서버리스 애플리케이션에 AWS X-Ray 활성화를 서버리스 애플리케이션 구성 요소들을 도식화하고, 세부 추적 정보를 확인해보도록 하겠습니다. 
 
 ### Step 1. Amazon API Gateway X-Ray 추적 활성화
 Amazon API Gateway에 등록된 리소스에 대한 요청 경로는 추적 ID(trace ID)를 통해 이루어지며, HTTP GET 혹은 POST와 같은 단일 요청으로 파생된 모든 세그먼트들에 대한 정보를 수집합니다.
