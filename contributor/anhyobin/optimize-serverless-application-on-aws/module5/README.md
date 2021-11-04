@@ -2,9 +2,11 @@
 지금까지의 모듈들을 통해 서버리스 기반의 애플리케이션을 구축하였습니다. 만약 이런 분산 환경에서 성능에 문제가 발생한다면 어떻게 디버깅을 해야 할까요?
 전통적인 디버깅 방식으로 Amazon API Gateway, AWS Lambda 함수 및 Amazon RDS로 구성된 분산 환경에을 분석하는 것은 쉽지 않습니다. [AWS X-Ray](https://aws.amazon.com//xray/)는 개발자가 분산 환경의 애플리케이션을 분석하고 디버깅하는데 필요한 정보를 수집하고 시각화하여 제공합니다. 이를 통해 개발자는 클라이언트의 요청이 Amazon API Gateway, AWS Lambda 를 거쳐 Amazon RDS 의 SQL 쿼리 수행까지의 단계별 추적 정보를 확인할 수 있고 맵 형태의 시각화 자료를 전체적인 성능 지표도 확인할 수 있습니다.
 
-AWS X-Ray는 서비스 요청 혹은 수행중인 작업에 대한 데이터를 수집하여 세그먼트(segment)라는 논리적인 형태로 저장하며 호스트, 요청, 응답, 작업 시간 및 에러 등의 정보를 포합합니다. 단일 요청 혹은 작업이 내부적으로 AWS 서비스, 외부 API 혹은 데이터베이스를 경유하는 경우, 이러한 다운 스트림에 대한 하위 세그먼트(subsegment)를 통해 각 항목 별로 상세 정보를 확인할 수 있습니다. 그리고 이러한 하위 요청들은 추적(trace) 정보를 통해 보다 효과적으로 흐름을 도식화하고, 요청 상태 및 성능 정보를 확인할 수 있습니다. 
-
 <div align="center"><img src="https://d1.awsstatic.com/Products/product-name/Images/product-page-diagram_AWS-X-Ray_how-it-works.2922edd4bfe011e997dbf32fdf8bd520bcbc85fb.png"></img></div> 
+
+AWS X-Ray는 서비스 요청 혹은 수행중인 작업에 대한 데이터를 수집하여 세그먼트(segment)라는 논리적인 형태로 저장하며 호스트, 요청, 응답, 작업 시간 및 에러 등의 정보를 포합합니다. 단일 요청 혹은 작업이 내부적으로 AWS 서비스, 외부 API 혹은 데이터베이스를 경유하는 경우, 이러한 다운 스트림에 대한 하위 세그먼트(subsegment)를 통해 각 항목 별로 상세 정보를 확인할 수 있습니다. 그리고 이러한 하위 요청들은 추적(trace) 정보를 통해 보다 효과적으로 흐름을 도식화하고, 요청 상태 및 성능 정보를 확인할 수 있습니다.
+
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/module5_architecture.png"></img></div> 
 
 이번 모듈에서는 지금까지 구축된 Amazon API Gateway, AWS Lambda에 AWS X-Ray 활성화를 서버리스 애플리케이션 구성 요소들을 도식화하고, 세부 추적 정보를 확인해보도록 하겠습니다. 
 
