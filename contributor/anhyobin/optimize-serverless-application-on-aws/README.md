@@ -25,8 +25,8 @@
 
 4. [서버리스 애플리케이션 코드 최적화 및 부하 테스트](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/README.md) : Moduel 2, 3 에서 개발한 서버리스 애플리케이션을 최적화하고 테스트합니다. 우선 AWS Lambda 의 코드 최적화를 통해 실행 시간을 단축하여 성능을 개선합니다. 또한 Locust 오픈 소스  부하 테스트 도구를 통해 부하를 줌으로써 Lambda 의 Scaling 동작을 확인하고, Provisioned Concurrency 설정으로 Cold Start 를 줄여 실행 시간을 최적화 해봅니다.
 5. [서버리스 애플리케이션 추적 및 성능 모니터링](https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/README.md) : 서버리스 애플리케이션에 AWS X-Ray를 연동하여 애플리케이션의 구성 요소를 시각화 하고 성능 및 오류 디버깅에 필요한 정보를 확인해봅니다. 클라이언트에서 보낸 요청이 Amazon API Gateway, AWS Lambda 그리고 SQL 쿼리문에서 소요된 레이턴시 정보 및 각 구간별 요청에 대한 상태 정보를 확인 해봅니다.
-
-<div align="center"><img src="https://d1.awsstatic.com/Products/product-name/Images/product-page-diagram_AWS-X-Ray_how-it-works.2922edd4bfe011e997dbf32fdf8bd520bcbc85fb.png"></img></div> 
+6. 
+<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/img/module5_architecture.jpg"></img></div> 
 
 
 ## 참고 자료
