@@ -16,7 +16,7 @@
 
 이번 단계에서는 앞서 생성한 Lambda 함수에 직접 하드코딩 되어있는 DB 크리덴셜 정보를 Secrets Manager API 를 호출하여 불러오는 구성을 수행합니다.
 
-1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS Secretes Manager 서비스로 이동합니다.
+1. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS Secrets Manager 서비스로 이동합니다.
 2. 화면의 [Store a new secret] 버튼을 클릭합니다.
 3. Select secret type 은 [Credential for RDS database] 옵션을 선택하고 Module 2 에서 생성했던 DB 크리덴셜 정보를 입력합니다. [User name] 에는 `admin` [Password] 에는 `Passw0rd` 를 입력합니다. 아래 Select which RDS database this secret will access 옵션에서는 이전에 생성한 **serverless-app-rds** 를 선택한 뒤 [Next] 버튼을 클릭합니다.
 
