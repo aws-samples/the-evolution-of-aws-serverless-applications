@@ -160,7 +160,7 @@ def lambda_handler(event, context):
 
 6. 변경을 완료 했다면 [Deploy] 버튼을 클릭해 배포를 완료합니다.
 
-### Step 3. 테스트
+### Step 4. 테스트
 
 이번 모듈을 마치기에 앞서 구성한 AWS Secrets Manager 와 Amazon RDS Proxy 가 제대로 동작하는지 테스트를 해보겠습니다. Lambda 콘솔에서 바로 Test 를 수행할 수 있지만 Module 2 에서 생성한 Amazon API Gateway 의 Invoke URL 을 활용해 테스트 하겠습니다.
 
