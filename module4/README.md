@@ -5,7 +5,7 @@
 
 Lambda 는 동시 실행 한도보다 먼저 초기 트래픽 버스트의 경우 500 ~ 3000의 리전 별로 다른 버스트 동시성 할당량의 영향을 받으며, [Lambda 스케일링](https://docs.aws.amazon.com/lambda/latest/dg/invocation-scaling.html) 은 버스트 이후 매분 500개의 추가 인스턴스가 동시성 한도에 이를 때까지 확장하는 방식으로 이루어 집니다.
 
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/features-scaling.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/the-evolution-of-aws-serverless-applications/blob/main/module4/img/features-scaling.png"></img></div>
 
 Module 4 에서는 [AWS Lambda 모범 사례](https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html) 중 일부를 적용하여 성능을 향상 시키는 방법을 알아보고 오픈 소스 부하 테스트 도구인 [Locust](https://locust.io/) 를 활용해 Lambda 스케일링에 관해 알아보겠습니다.
 
@@ -19,18 +19,18 @@ Module 4 에서는 [AWS Lambda 모범 사례](https://docs.aws.amazon.com/lambda
 3. Name 은 `Locust` 를 입력하고 [Next step] 버튼을 클릭합니다.
 4. Instance type 은 [Other instance type] 을 선택하고 아래에서 [c5.24xlarge] 를 선택합니다. 
 
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/1.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/the-evolution-of-aws-serverless-applications/blob/main/module4/img/1.png"></img></div>
 
 > Event Engine 을 활용하는 AWS Event 가 아니라면 더 작은 인스턴스 타입을 선택해도 괜찮습니다. Locust 의 부하 발생 TPS 의 차이가 발생합니다.
 
 5. 하단 [Network settings (advanced)] 메뉴를 확장한 뒤 Network (VPC) 는 [serverless-app-vpc] 를 선택하고 Subnet 은 [cloud9-subnet-a] 를 선택합니다.
 
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/2.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/the-evolution-of-aws-serverless-applications/blob/main/module4/img/2.png"></img></div>
 
 6. 하단의 [Next step] 을 선택하고 [Create environment] 를 선택하여 Cloud9 생성을 완료합니다. 생성에는 시간이 소요되며 생성이 완료되면 바로 IDE 환경에 접속하게 됩니다.
 7. 초기 화면의 Welcome 페이지를 닫고 + 버튼을 클릭한 뒤 [New Terminal] 옵션을 선택합니다. 혹은 하단의 터미널 창에서 수행해도 무방합니다.
 
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/3.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/the-evolution-of-aws-serverless-applications/blob/main/module4/img/3.png"></img></div>
 
 8. 다음의 명령어를 통해 Locust 를 Cloud9 환경에 설치합니다.
 
@@ -46,7 +46,7 @@ $ locust -V
 
 10. 설치를 확인했다면 테스트를 수행합니다. 이를 위해 테스트를 위한 locustfile 을 작성합니다. 좌측 파일 탐색기의 Locust 폴더에서 우 클릭 후 [New File] 옵션을 선택하고 파일명은 ```locustfile.py``` 를 입력합니다.
 
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/4.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/the-evolution-of-aws-serverless-applications/blob/main/module4/img/4.png"></img></div>
 
 11. 생성한 locustfile.py 를 열고 아래의 테스트 스크립트를 붙여넣은 뒤 상단 메뉴 [File] 의 [Save] 옵션을 선택하여 저장합니다.
 
@@ -74,12 +74,12 @@ $ locust
 15. Inbound rules 메뉴 하단에서 [Edit inbound rules] 메뉴를 선택하고 [Add rule] 버튼을 클릭합니다.
 16. Type 은 [Custom TCP] 를 선택하고 Port range 에는 ```8089``` 를 입력합니다. Source 는 [Anywhere-IPv4] 를 선택한 뒤 [Save rules] 버튼을 클릭하여 완료합니다.
 
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/5.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/the-evolution-of-aws-serverless-applications/blob/main/module4/img/5.png"></img></div>
 
 17. 좌측의 [Instaces] 메뉴로 다시 이동한 뒤 aws-cloud9-Locust 인스턴스의 Public IP 를 복사합니다.
 18. 브라우저의 새 탭을 연 뒤 ```http://Cloud9 Instance Public IP:8089``` 를 입력하여 Locust web interface 에 접속합니다. 부하 테스트를 위한 Locust 구성을 완료했습니다.
 
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/6.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/the-evolution-of-aws-serverless-applications/blob/main/module4/img/6.png"></img></div>
 
 ### Step 2. 1차 부하 테스트
 
@@ -96,32 +96,32 @@ Lambda 함수를 최적화 하기 전 현재 구성한 환경에서 어떻게 �
 > API Gateway Invoke URL 은 API Gateway 에서 생성한 API 의 Stages 메뉴에서 확인할 수 있습니다.
 > Number of users 나 Spawn rate 값은 임의로 변경하여 테스트해도 괜찮습니다. 부하 발생 중 값 변경도 가능합니다.
 
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/7.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/the-evolution-of-aws-serverless-applications/blob/main/module4/img/7.png"></img></div>
 
 3. 아래와 같이 입력했다면 [Start swarming] 버튼을 클릭하여 부하를 줍니다.
 
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/8.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/the-evolution-of-aws-serverless-applications/blob/main/module4/img/8.png"></img></div>
 
 4. 상단의 [Charts] 메뉴로 이동하면 RPS 등 부하 상황을 그래프로 확인할 수 있습니다.
 
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/9.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/the-evolution-of-aws-serverless-applications/blob/main/module4/img/9.png"></img></div>
 
 5. 실제 Lambda 의 호출과 스케일링을 확인해보겠습니다. [AWS 콘솔](https://console.aws.amazon.com/) 에서 AWS Lambda 서비스로 이동합니다.
 6. 앞서 구성한 serverless-app-lambda 를 선택한 뒤 [Monitor] 탭으로 이동하면 Lambda 에서 제공하는 메트릭을 확인할 수 있습니다. 그래프를 살펴보면 최초 Burst Limit 에 도달한 뒤 1분당 500 씩 Concurrent executions 이 증가하는 것을 확인할 수 있습니다. 그에 따라 최초 스케일링 전 스로틀이 발생했다가 Lambda 가 스케일링 되면서 해소되는 것을 확인할 수 있습니다.
 
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/10.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/the-evolution-of-aws-serverless-applications/blob/main/module4/img/10.png"></img></div>
 
 > AWS 에서 제공하는 기본 Concurrent executions 제한이 1000이기 때문에 스케일링에 대한 부분 확인이 어려울 수 있습니다. 
 
 7. 이 후 테스트를 위해 Locust web interface 로 이동한 뒤 상단의 STOP 버튼을 클릭하여 부하 테스트를 중지합니다.
 
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/11.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/the-evolution-of-aws-serverless-applications/blob/main/module4/img/11.png"></img></div>
 
 ### Step 3. Lambda 코드 최적화
 
 앞 서 Step 2 에서 경험한 것과 같이 발생하는 Lambda 의 스로틀링을 회피하는 방법은 크게 두 가지가 있습니다. 첫 번째는 [Lambda provisioned concurrency](https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html) 를 통해 지정한 갯수 만큼의 실행 환경을 구성해두는 것입니다.
 
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/features-scaling-provisioned.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/the-evolution-of-aws-serverless-applications/blob/main/module4/img/features-scaling-provisioned.png"></img></div>
 
 두 번째는 Module 4 가장 앞에서 설명한 것과 같이 동시성의 최소화를 위해 Lambda 함수의 실행 시간을 최적화 하는 것입니다. 이것은 [Lambda 의 모범 사례](https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html) 중 하나로 실행 시간은 비용과도 밀접한 연관이 있기 때문에 Lambda 를 활용하신다면 필수로 적용해야 합니다.
 
@@ -247,15 +247,15 @@ Lambda 의 실행 시간이 약 1/100 로 단축되었습니다. 부하 테스�
 2. 앞의 테스트 후 종료하지 않았다면 우측 상단의 [New test] 옵션을 선택합니다.
 3. 앞서와 동일하게 [Number of users] 는 ```10000```, [Spawn rate] 에는 ```500```, [Host] 는 ```API Gateway Invoke URL``` 을 입력합니다.
 
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/12.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/the-evolution-of-aws-serverless-applications/blob/main/module4/img/12.png"></img></div>
 
 4. [Start swarming] 버튼을 클릭하여 부하를 줍니다.
 5. 다시 Lambda 콘솔로 이동한 뒤 [Monitor] 탭을 통해 메트릭을 확인합니다. 실행 시간이 최적화 되어 Concurrent executions 가 수천 단위까지 생성되던 것이 약 100개 정도로 떨어진 것을 확인할 수 있습니다. 또한 스로틀은 전혀 발생하지 않는 것을 확인할 수 있습니다.
 
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/13.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/the-evolution-of-aws-serverless-applications/blob/main/module4/img/13.png"></img></div>
 
 6. 1차 테스트 때와 비교해보면 코드 최적화 이후 테스트에서 줄어든 Throttles 와 Concurrent executions, 그리고 Duration 등을 확인할 수 있습니다.
 
-<div align="center"><img src="https://github.com/aws-samples/aws-games-sa-kr/blob/main/contributor/anhyobin/optimize-serverless-application-on-aws/module4/img/14.png"></img></div>
+<div align="center"><img src="https://github.com/aws-samples/the-evolution-of-aws-serverless-applications/blob/main/module4/img/14.png"></img></div>
 
-이번 장에서는 Lambda 함수를 최적화 하는 방법과 Locust 부하 발생기를 통해 Lambda 의 스케일링, 실행 시간과 동시성의 관계 등에 대해 살펴봤습니다. [Module 5. 서버리스 애플리케이션 추적 및 성능 모니터링](https://github.com/aws-samples/aws-games-sa-kr/edit/main/contributor/anhyobin/optimize-serverless-application-on-aws/module5/README.md) 로 이동합니다.
+이번 장에서는 Lambda 함수를 최적화 하는 방법과 Locust 부하 발생기를 통해 Lambda 의 스케일링, 실행 시간과 동시성의 관계 등에 대해 살펴봤습니다. [Module 5. 서버리스 애플리케이션 추적 및 성능 모니터링](https://github.com/aws-samples/the-evolution-of-aws-serverless-applications/blob/main/module5/README.md) 로 이동합니다.
